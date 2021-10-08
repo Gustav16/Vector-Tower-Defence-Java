@@ -1,6 +1,130 @@
 const canvas = document.querySelector('canvas')
 const ctx = canvas.getContext('2d')
 
+
+
+
+setInterval(function () {
+
+    console.log("gong")
+
+
+}, 100);
+
+
+
+
+setInterval(function () {
+
+    console.log("gonggong")
+
+
+}, 1000);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+var count = 0
+
+function dummy() {
+
+    console.log(count)
+
+
+
+}
+
+
+
+
+
+
+
+function intaval(functionName, repetition, intaval, time) {
+
+    //console.log("test")
+
+    rep();
+
+
+    function rep() {
+
+
+
+        functionName;
+        //dummy();
+
+
+
+        count++;
+
+
+
+
+
+
+
+        if (count < repetition) {
+
+
+
+            setTimeout(rep, 300);
+
+
+        }
+    }
+
+
+
+}
+
+
+intaval( dummy(), 3);
+
+
+
+
+
+function makeEnemie() {
+    enemies[counter] = new Enemy(map[3][0].x, map[3][0].y, counter)
+    counter++;
+
+    if (counter < 10) {
+
+        setTimeout(makeEnemie, 300);
+    }
+
+}
+
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+/*
+
 class Polygon {
     constructor(width, height) {
         this.width = width;
@@ -24,24 +148,20 @@ class Polygon {
 }
 
 
-
-
-
-
 class Square extends Polygon {
 
     constructor(){
         super();
 
-        
+
 
     }
 
- 
+
     color = "green"
 
    // var hvem=13
-    
+
 
 
 
@@ -53,13 +173,6 @@ class Square extends Polygon {
 
 
 }
-
-
-var hv = 3;
-
-
-console.log(hv)
-
 
 
 
@@ -75,3 +188,5 @@ figur1.draw();
 figur2.draw();
 
 figur2.print();
+
+*/
