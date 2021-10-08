@@ -29,21 +29,38 @@ class Polygon {
 
 
 class Square extends Polygon {
-    constructor(width, height) {
-        
+
+    constructor(){
         super();
-        this.width = width;
-        this.height = height
+
+        
+
+    }
+
+ 
+    color = "green"
+
+   // var hvem=13
+    
 
 
-        // this.y=y
-        this.width = 100
-        this.x = 400
+
+    print(){
+
+
+        console.log(col)
     }
 
 
-
 }
+
+
+var hv = 3;
+
+
+console.log(hv)
+
+
 
 
 var figur1 = new Polygon(10, 20);
@@ -54,4 +71,7 @@ var figur1 = new Polygon(10, 20);
 var figur2 = new Square(100, 12);
 
 figur1.draw();
+
 figur2.draw();
+
+figur2.print();
