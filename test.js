@@ -4,26 +4,6 @@ const ctx = canvas.getContext('2d')
 
 
 
-setInterval(function () {
-
-    console.log("gong")
-
-
-}, 100);
-
-
-
-
-setInterval(function () {
-
-    console.log("gonggong")
-
-
-}, 1000);
-
-
-
-
 
 
 
