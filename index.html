@@ -1,18 +1,25 @@
 <html>
+
 <head>
-<title> Track Mouse </title>
-<script>
+    <title> Track Mouse </title>
 
 
-onmousemove = function(e){console.log("mouse location:", e.clientX, e.clientY)}
-</script>
+
+
 
 </head>
 
-<body onload="mouse_position()">
-<form name="Form1">
-POSX: <input type="text" name="posx"><br>
-POSY: <input type="text" name="posy"><br>
-</form>
+
 </body>
+
+<canvas  id="canvas" width="660" height="660" onmousemove="mouseCoordinates ()"></canvas>
+</body>
+
+
+
+
+
 </html>
+
+
+<script scr="test.js"></script>
