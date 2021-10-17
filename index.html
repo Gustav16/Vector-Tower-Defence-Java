@@ -1,56 +1,18 @@
-<!DOCTYPE html>
-<html lang = "en">
+<html>
 <head>
-    <title>Paint</title>
+<title> Track Mouse </title>
+<script>
 
 
-    <style>
+onmousemove = function(e){console.log("mouse location:", e.clientX, e.clientY)}
+</script>
 
-
-#grid {
-  display: grid;
-  padding-left: 66px;
-  height: 4px;
-  width: 4px;
-
-  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
-  gap: 22px 22px;
-}
-
-#grid > div {
-  border: 1px solid black;
-  background-color: lime;
-  height: 44px;
-  width: 44px;
-}
-
-
-    </style>
- 
 </head>
-<body>
 
-
-    <canvas  style=float:left id = "canvas" width = "1000" height = "1000"></canvas>
-
-    
-<div id="grid">
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-</div>
+<body onload="mouse_position()">
+<form name="Form1">
+POSX: <input type="text" name="posx"><br>
+POSY: <input type="text" name="posy"><br>
+</form>
 </body>
-
-
 </html>
-
-
-<script src="test.js"></script>
-
-
