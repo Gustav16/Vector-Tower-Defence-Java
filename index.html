@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
+
+
 <head>
-    <title>Tower defence</title>
+    <title>Krypterer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
@@ -11,20 +12,63 @@
 </head>
 
 
-
-
 <body>
 
 
 
 
-<br>
 
-<canvas width="1000px" height="800px" >
+    <button onclick="generateKey()">Generer nøgle</button>
+
+    <p id="public"></p>
+    <p id="privat"></p>
+
+    <hr>
+    
+
+    <input type="file" name="inputfile" id="inputfile">
+
+    <p> Indsæt offentlig nøgle:
+        <input type="text" id="Text">
+    </p>
+
+    <button onclick="krypter()">Krypter</button>
+
+    <hr>
+
+    <input type="file" name="inputfile" id="inputfile">
+
+    <p> Indsæt privat nøgle:
+        <input type="text" id="Text">
+    </p>
+
+  
+
+   
+
+    <button onclick="Dekrypter()">Dekrypter</button>
+
+
+
+
+    <script>
+
+        function generateKey() {
+
+
+
+            document.getElementById("public").innerHTML = "Offentlig nøgle:" + "a"
+            document.getElementById("privat").innerHTML = "Privat nøgle:" + "a"
+        }
+    </script>
 
 
 </body>
 
-    
+</html>
 
-    <script src="test.js"></script>
+<script src="d.js"></script>
+<script src="calc.js"></script>
+<script src="generatePrime.js"></script>
+
+<script src="script.js"></script>

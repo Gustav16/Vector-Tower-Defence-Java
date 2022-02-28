@@ -1,35 +1,55 @@
-const canvas = document.querySelector('canvas')
-const ctx = canvas.getContext('2d')
-
-
-
-
-setInterval(function () {
-
-    console.log("gong")
-
-
-}, 100);
-
-
-
-
-setInterval(function () {
-
-    console.log("gonggong")
-
-
-}, 1000);
 
 
 
 
 
+/*
+
+
+<!DOCTYPE html>
+<html>
+  
+<head>
+    <title>Read Text File</title>
+</head>
+  
+<body>
+    <input type="file" name="inputfile"
+            id="inputfile">
+    <br>
+   
+    <pre id="output"></pre>
+      
+    <script>
+        document.getElementById('inputfile')
+            .addEventListener('change', function() {
+              
+            var fr=new FileReader();
+
+            fr.onload=function(){
+                console.log(fr.result)
+         
+                
+            }
+
+
+            fr.readAsText(this.files[0]);
+
+
+        })
+
+        
+    </script>
+</body>
+  
+</html>
 
 
 
 
 
+
+*/
 
 
 
