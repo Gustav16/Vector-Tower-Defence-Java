@@ -1,7 +1,4 @@
 import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
-import javax.swing.*;
 import java.awt.Color;
 
 public class Square extends Rectangle {
@@ -21,7 +18,7 @@ public class Square extends Rectangle {
   Color strokeColor = new Color(0, 0, 0);
   boolean isTowerPlacebel = true;
 
-  public static int[][] bugRoute;
+  public static int[][] vectoidRoute;
 
   Square(int x, int y) {
     this.x = x;
@@ -42,8 +39,9 @@ public class Square extends Rectangle {
         grid[i][j] = new Square(i * 50, j * 50 + 130);
       }
     }
-
-
+    makeMap();
+    calculateRouteLength();
+    makeVectoidRoute();
   }
 
   public static void drawGrid(Graphics g) {
@@ -103,10 +101,10 @@ public class Square extends Rectangle {
     }
     length += width * 2;
 
-    bugRoute = new int[length + 1][2];
+    vectoidRoute = new int[length + 1][2];
   }
 
-  private static void makeBugRoute() {
+  private static void makeVectoidRoute() {
 
     int number = 0;
     int x2 = 0;
@@ -164,12 +162,12 @@ public class Square extends Rectangle {
         for (int j = 0; j != xDist + yDist; j++) {
 
           if (yDist == 0) {
-            bugRoute[number][0] = x1 + j;
-            bugRoute[number][1] = y1;
+            vectoidRoute[number][0] = x1 + j;
+            vectoidRoute[number][1] = y1;
 
           } else {
-            bugRoute[number][0] = x1;
-            bugRoute[number][1] = y1 + j;
+            vectoidRoute[number][0] = x1;
+            vectoidRoute[number][1] = y1 + j;
 
           }
           number++;
@@ -179,12 +177,12 @@ public class Square extends Rectangle {
         for (int j = 0; j != Math.abs(xDist + yDist); j++) {
 
           if (yDist == 0) {
-            bugRoute[number][0] = x1 - j;
-            bugRoute[number][1] = y1;
+            vectoidRoute[number][0] = x1 - j;
+            vectoidRoute[number][1] = y1;
 
           } else {
-            bugRoute[number][0] = x1;
-            bugRoute[number][1] = y1 - j;
+            vectoidRoute[number][0] = x1;
+            vectoidRoute[number][1] = y1 - j;
 
           }
           number++;
@@ -193,8 +191,8 @@ public class Square extends Rectangle {
 
     }
 
-    bugRoute[number][0] = x2;
-    bugRoute[number][1] = y2;
+    vectoidRoute[number][0] = x2;
+    vectoidRoute[number][1] = y2;
 
   }
 

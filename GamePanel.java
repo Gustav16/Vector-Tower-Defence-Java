@@ -1,31 +1,46 @@
 import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
 import javax.swing.*;
-import java.awt.Color;
 import java.awt.Graphics;
 
 public class GamePanel extends JPanel implements Runnable {
 
     static Graphics graphics;
-    final static int FPS = 100;
+    final static int FPS =100;
     final static public long SKIP_TICKS = 1000000000 / FPS;
-    int v = 0;
+
+
 
     GamePanel() {
-        //Square.makeGrid();
-        //run();
+        new Thread(this).start();
+
+        Square.makeGrid();
+        Vectoid.newRound();
+
     }
 
     public void paint(Graphics g) {
-        // Square.drawGrid(g);
-        g.fillRect(v, 10, 100, 100);
-        v=v+10;
-        System.out.println("x");
+        Image image = createImage(GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT);
+        graphics = image.getGraphics();
+        draw(graphics);
+        g.drawImage(image, 0, 0, this);
+
+    }
+
+    public void draw(Graphics g) {
+        Square.drawGrid(g);
+
+        for (int i = 0; i < Vectoid.currentNumberOfVectoids; i++) {
+            Vectoid.listOfVectoids[i].draw(g);
+            Vectoid.listOfVectoids[i].move();
+
+        }
+
+        Toolkit.getDefaultToolkit().sync();
+
     }
 
     // Gameloop
-     public void run() {
+    public void run() {
         // long then = System.nanoTime();
         // The gameloop runs until the program is closed
         while (true) {
@@ -33,7 +48,6 @@ public class GamePanel extends JPanel implements Runnable {
             long now = System.nanoTime();
 
             repaint();
-
 
             // After the game has been updated, the program needs to wait until next
             // gameupdate. This waiting time is determined by the FPS variable.
