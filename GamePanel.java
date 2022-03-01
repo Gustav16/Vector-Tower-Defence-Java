@@ -14,11 +14,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     GamePanel() {
         new Thread(this).start();
-
         Square.makeGrid();
         Vectoid.makeVectoids();
-
     }
+    
 
     public void paint(Graphics g) {
         Image image = createImage(GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT);
@@ -30,16 +29,13 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void draw(Graphics g) {
         Square.drawGrid(g);
-        if (roundStart==true){
-        for (int i = 0; i < Vectoid.currentNumberOfVectoids; i++) {
-            if (Vectoid.listOfVectoids[i].dead == false) {
-                Vectoid.listOfVectoids[i].draw(g);
-                Vectoid.listOfVectoids[i].move();
-            }
-        }
-    }
+        Vectoid.drawVectoids(g);
+
         Toolkit.getDefaultToolkit().sync();
     }
+
+
+
 
     // Gameloop
     public void run() {

@@ -48,6 +48,20 @@ public class Vectoid {
         }
     }
 
+    public static void drawVectoids(Graphics g){
+
+        if (GamePanel.roundStart==true){
+            for (int i = 0; i < Vectoid.currentNumberOfVectoids; i++) {
+                if (listOfVectoids[i].dead == false) {
+                    listOfVectoids[i].draw(g);
+                    listOfVectoids[i].move();
+                }
+            }
+        }
+
+
+    }
+
     public static void makeVectoids() {
         for (int i = 0; i < maxNumberOfVectoids; i++) {
             listOfVectoids[i] = new Vectoid();
@@ -56,7 +70,7 @@ public class Vectoid {
 
     public static void newRound() {
         GamePanel.roundStart = true;
-
+        currentNumberOfVectoids = 0;
         for (int i = 0; i < maxNumberOfVectoids; i++) {
             listOfVectoids[i].dead = false;
             listOfVectoids[i].health = 100;

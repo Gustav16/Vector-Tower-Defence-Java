@@ -9,12 +9,19 @@ public class Menu extends JPanel{
 
     Menu() {
         JButton b=new JButton("Click Here");
-        b.setBounds(50,100,95,30);  
+        b.setBounds(500,100,95,300);  
+        b.setPreferredSize(new Dimension(200, 100));
         this.add(b);  
-
+        this.add(b);
     }
 
-    private void makeTopMenu() {
+     void makeTopMenu() {
+
+        JButton b=new JButton("Click Here");
+        b.setBounds(500,100,95,30);  
+        b.setPreferredSize(new Dimension(200, 100));
+        this.add(b);  
+
   
 
     }
