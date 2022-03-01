@@ -12,7 +12,6 @@ public class Menu extends JPanel{
         b.setBounds(50,100,95,30);  
         this.add(b);  
 
-
     }
 
     private void makeTopMenu() {

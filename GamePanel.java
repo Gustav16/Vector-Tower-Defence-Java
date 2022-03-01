@@ -5,16 +5,18 @@ import java.awt.Graphics;
 public class GamePanel extends JPanel implements Runnable {
 
     static Graphics graphics;
-    final static int FPS =100;
+    final static int FPS = 100;
     final static public long SKIP_TICKS = 1000000000 / FPS;
 
-
+    static public int lives = 25;
+    static public int money = 100;
+    static public boolean roundStart = false;
 
     GamePanel() {
         new Thread(this).start();
 
         Square.makeGrid();
-        Vectoid.newRound();
+        Vectoid.makeVectoids();
 
     }
 
@@ -28,15 +30,15 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void draw(Graphics g) {
         Square.drawGrid(g);
-
+        if (roundStart==true){
         for (int i = 0; i < Vectoid.currentNumberOfVectoids; i++) {
-            Vectoid.listOfVectoids[i].draw(g);
-            Vectoid.listOfVectoids[i].move();
-
+            if (Vectoid.listOfVectoids[i].dead == false) {
+                Vectoid.listOfVectoids[i].draw(g);
+                Vectoid.listOfVectoids[i].move();
+            }
         }
-
+    }
         Toolkit.getDefaultToolkit().sync();
-
     }
 
     // Gameloop

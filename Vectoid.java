@@ -3,6 +3,9 @@ import java.awt.Color;
 
 public class Vectoid {
 
+    static int maxNumberOfVectoids = 10;
+    static int currentNumberOfVectoids = 0;
+    public static Vectoid listOfVectoids[] = new Vectoid[10];
 
     int radius = 50;
     float distance = 0;
@@ -13,11 +16,8 @@ public class Vectoid {
     int slowTime = 0;
     float slowSpeed = 0;
     int health = 100;
-    static int maxNumberOfVectoids = 10;
-    static int currentNumberOfVectoids = 0;
     Color bodyColor = new Color(255, 0, 0);
-
-    public static Vectoid listOfVectoids[] = new Vectoid[10];
+    boolean dead = false;
 
     public void draw(Graphics g) {
         x = Square.vectoidRoute[Math.round(distance)][0];
@@ -31,30 +31,39 @@ public class Vectoid {
         outOfMap();
     }
 
-    public static void newRound() {
-       
-
-        if (currentNumberOfVectoids < maxNumberOfVectoids) {
-
-            new java.util.Timer().schedule(
-                    new java.util.TimerTask() {
-                        @Override
-
-                        public void run() {
-                            listOfVectoids[currentNumberOfVectoids] = new Vectoid();
-                            currentNumberOfVectoids++;
-                            newRound();
-                        }
-                    },
-                    500);
-        }
-        
-
-    }
-
     private void outOfMap() {
         if (distance >= Square.vectoidRoute.length) {
+            dead = true;
+            GamePanel.lives -= 1;
 
         }
     }
+
+    public void takeDamage(int damage) {
+        health -= damage;
+
+        if (health <= 0) {
+            dead = true;
+            GamePanel.money += 10;
+        }
+    }
+
+    public static void makeVectoids() {
+        for (int i = 0; i < maxNumberOfVectoids; i++) {
+            listOfVectoids[i] = new Vectoid();
+        }
+    }
+
+    public static void newRound() {
+        GamePanel.roundStart = true;
+
+        for (int i = 0; i < maxNumberOfVectoids; i++) {
+            listOfVectoids[i].dead = false;
+            listOfVectoids[i].health = 100;
+            currentNumberOfVectoids++;
+
+        }
+
+    }
+
 }
