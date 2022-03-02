@@ -36,7 +36,7 @@ public class Square extends Rectangle {
     for (int i = 0; i < collums; i++) {
       for (int j = 0; j < rows; j++) {
 
-        grid[i][j] = new Square(i * 50, j * 50 + 130);
+        grid[i][j] = new Square(i * 50, j * 50);
       }
     }
     makeMap();

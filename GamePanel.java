@@ -10,6 +10,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     static public int lives = 25;
     static public int money = 100;
+    static public int round = 0;
+    static public int interest = 3;
+
+
     static public boolean roundStart = false;
 
     GamePanel() {
@@ -30,7 +34,6 @@ public class GamePanel extends JPanel implements Runnable {
     public void draw(Graphics g) {
         Square.drawGrid(g);
         Vectoid.drawVectoids(g);
-
         Toolkit.getDefaultToolkit().sync();
     }
 

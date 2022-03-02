@@ -48,9 +48,9 @@ public class Vectoid {
         }
     }
 
-    public static void drawVectoids(Graphics g){
+    public static void drawVectoids(Graphics g) {
 
-        if (GamePanel.roundStart==true){
+        if (GamePanel.roundStart == true) {
             for (int i = 0; i < Vectoid.currentNumberOfVectoids; i++) {
                 if (listOfVectoids[i].dead == false) {
                     listOfVectoids[i].draw(g);
@@ -58,7 +58,6 @@ public class Vectoid {
                 }
             }
         }
-
 
     }
 
@@ -71,11 +70,24 @@ public class Vectoid {
     public static void newRound() {
         GamePanel.roundStart = true;
         currentNumberOfVectoids = 0;
-        for (int i = 0; i < maxNumberOfVectoids; i++) {
-            listOfVectoids[i].dead = false;
-            listOfVectoids[i].health = 100;
-            currentNumberOfVectoids++;
 
+        while (currentNumberOfVectoids < maxNumberOfVectoids-1) {
+
+            new java.util.Timer().schedule(
+                    new java.util.TimerTask() {
+                        @Override
+
+                        public void run() {
+                            System.out.print(currentNumberOfVectoids);
+                            //listOfVectoids[currentNumberOfVectoids] = new Vectoid();
+                            
+                            //listOfVectoids[currentNumberOfVectoids].dead = false;
+                            //listOfVectoids[currentNumberOfVectoids].health = 100;
+                            currentNumberOfVectoids++;
+
+                        }
+                    },
+                    500);
         }
 
     }
