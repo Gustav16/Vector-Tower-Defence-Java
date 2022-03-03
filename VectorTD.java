@@ -1,10 +1,12 @@
 
-public class VectorTD{
+public class VectorTD {
+
+    public static GameFrame frame;
 
     public static void main(String[] args) {
 
         // Creates the display
-        GameFrame frame = new GameFrame();
-        
+        frame = new GameFrame();
+
     }
 }

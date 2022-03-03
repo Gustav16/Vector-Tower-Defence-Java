@@ -14,6 +14,9 @@ public class GameFrame extends JFrame {
 
     static final int SCREEN_WIDTH = 1000;
     static final int SCREEN_HEIGHT = 1000;
+    final JLabel moneyLabel;
+
+    
 
     GameFrame() {
 
@@ -24,10 +27,10 @@ public class GameFrame extends JFrame {
         topMenu.setLayout(new GridLayout(2, 3, 10, 10));
         topMenu.setBackground(Color.BLACK);
 
-        JLabel moneyLabel = new JLabel("Money: " + GamePanel.money + "$", SwingConstants.CENTER);
-        JLabel livesLabel = new JLabel("Lives: " + GamePanel.lives, SwingConstants.CENTER);
-        JLabel roundLabel = new JLabel("Round: " + GamePanel.round, SwingConstants.CENTER);
-        JLabel interestLabel = new JLabel("Interest: " + GamePanel.interest + "%", SwingConstants.CENTER);
+        moneyLabel = new JLabel("Money: " + GamePanel.money + "$", SwingConstants.CENTER);
+        final JLabel livesLabel = new JLabel("Lives: " + GamePanel.lives, SwingConstants.CENTER);
+        final JLabel roundLabel = new JLabel("Round: " + GamePanel.round, SwingConstants.CENTER);
+        final JLabel interestLabel = new JLabel("Interest: " + GamePanel.interest + "%", SwingConstants.CENTER);
 
         moneyLabel.setOpaque(true);
         livesLabel.setOpaque(true);
@@ -87,5 +90,12 @@ public class GameFrame extends JFrame {
         setResizable(false);
 
     }
+
+    void update(){
+
+        moneyLabel.setOpaque(true);
+    }
+
+
 
 }

@@ -12,12 +12,12 @@ public class Vectoid {
     int x = Square.vectoidRoute[Math.round(distance)][0];
     int y = Square.vectoidRoute[Math.round(distance)][1];
     float speed = 3;
-    int timer = 0;
     int slowTime = 0;
     float slowSpeed = 0;
     int health = 100;
     Color bodyColor = new Color(255, 0, 0);
     boolean dead = false;
+    static long timer;
 
     public void draw(Graphics g) {
         x = Square.vectoidRoute[Math.round(distance)][0];
@@ -35,7 +35,7 @@ public class Vectoid {
         if (distance >= Square.vectoidRoute.length) {
             dead = true;
             GamePanel.lives -= 1;
-
+            
         }
     }
 
@@ -67,29 +67,23 @@ public class Vectoid {
         }
     }
 
-    public static void newRound() {
-        GamePanel.roundStart = true;
-        currentNumberOfVectoids = 0;
+    public static void spawnVectoids() {
+        if ((currentNumberOfVectoids < maxNumberOfVectoids) && (System.nanoTime() - timer) > 300000000) {
+            listOfVectoids[currentNumberOfVectoids].dead = false;
+            listOfVectoids[currentNumberOfVectoids].health = 100;
+            listOfVectoids[currentNumberOfVectoids].distance = 0;
+            currentNumberOfVectoids++;
+            timer = System.nanoTime();
 
-        while (currentNumberOfVectoids < maxNumberOfVectoids-1) {
-
-            new java.util.Timer().schedule(
-                    new java.util.TimerTask() {
-                        @Override
-
-                        public void run() {
-                            System.out.print(currentNumberOfVectoids);
-                            //listOfVectoids[currentNumberOfVectoids] = new Vectoid();
-                            
-                            //listOfVectoids[currentNumberOfVectoids].dead = false;
-                            //listOfVectoids[currentNumberOfVectoids].health = 100;
-                            currentNumberOfVectoids++;
-
-                        }
-                    },
-                    500);
         }
 
     }
 
+    public static void newRound() {
+        if (GamePanel.roundStart == false) {
+            GamePanel.roundStart = true;
+            currentNumberOfVectoids = 0;
+            timer = System.nanoTime();
+        }
+    }
 }

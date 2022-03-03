@@ -34,6 +34,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void draw(Graphics g) {
         Square.drawGrid(g);
         Vectoid.drawVectoids(g);
+        Vectoid.spawnVectoids();
         Toolkit.getDefaultToolkit().sync();
     }
 
