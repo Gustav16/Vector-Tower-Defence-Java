@@ -6,17 +6,15 @@ import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.*;
-import java.awt.event.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.BoxLayout;
 
 public class GameFrame extends JFrame {
 
     static final int SCREEN_WIDTH = 1000;
     static final int SCREEN_HEIGHT = 1000;
     final JLabel moneyLabel;
-
-    
 
     GameFrame() {
 
@@ -69,6 +67,38 @@ public class GameFrame extends JFrame {
         topMenu.add(interestLabel);
         topMenu.add(autoStart);
 
+        JPanel sideMenu = new JPanel();
+        sideMenu.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        sideMenu.setBackground(Color.BLACK);
+
+        JPanel towerMenu = new JPanel();
+        towerMenu.setLayout(new GridLayout(4, 3, 10, 10));
+        towerMenu.setBackground(Color.BLACK);
+
+        JLabel label1 = new JLabel();
+        label1.setIcon(new ImageIcon(myPicture));
+        towerMenu.add(label1);
+        
+        JLabel label2 = new JLabel();
+        label2.setIcon(new ImageIcon(myPicture));
+        towerMenu.add(label2);
+
+        JLabel label3 = new JLabel();
+        label3.setIcon(new ImageIcon(myPicture));
+        towerMenu.add(label3);
+
+        JLabel label4 = new JLabel();
+        label4.setIcon(new ImageIcon(myPicture));
+        towerMenu.add(label4);
+
+        
+        
+        
+        
+
+
+
         screen.add(new GamePanel(), BorderLayout.CENTER);
         screen.add(topMenu, BorderLayout.NORTH);
 
@@ -91,11 +121,9 @@ public class GameFrame extends JFrame {
 
     }
 
-    void update(){
+    void update() {
 
         moneyLabel.setOpaque(true);
     }
-
-
 
 }

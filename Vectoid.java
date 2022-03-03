@@ -6,6 +6,7 @@ public class Vectoid {
     static int maxNumberOfVectoids = 10;
     static int currentNumberOfVectoids = 0;
     public static Vectoid listOfVectoids[] = new Vectoid[10];
+    static int countDead = 0;
 
     int radius = 50;
     float distance = 0;
@@ -35,6 +36,12 @@ public class Vectoid {
         if (distance >= Square.vectoidRoute.length) {
             dead = true;
             GamePanel.lives -= 1;
+            countDead++;
+            VectorTD.frame.moneyLabel.setText("Lives: " + GamePanel.lives);
+            if (countDead == maxNumberOfVectoids) {
+                GamePanel.roundStart = false;
+
+            }
 
         }
     }
@@ -44,6 +51,7 @@ public class Vectoid {
 
         if (health <= 0) {
             dead = true;
+
             GamePanel.money += 10;
         }
     }
