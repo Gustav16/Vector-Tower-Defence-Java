@@ -35,7 +35,7 @@ public class Vectoid {
         if (distance >= Square.vectoidRoute.length) {
             dead = true;
             GamePanel.lives -= 1;
-            
+
         }
     }
 
