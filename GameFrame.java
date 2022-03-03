@@ -67,32 +67,46 @@ public class GameFrame extends JFrame {
         topMenu.add(interestLabel);
         topMenu.add(autoStart);
 
-        JPanel sideMenu = new JPanel();
-        sideMenu.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        //JPanel sideMenu = new JPanel();
+        //sideMenu.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        sideMenu.setBackground(Color.BLACK);
+        //sideMenu.setBackground(Color.BLACK);
 
         JPanel towerMenu = new JPanel();
-        towerMenu.setLayout(new GridLayout(4, 3, 10, 10));
+        towerMenu.setLayout(new GridLayout(6, 4, 10, 10));
         towerMenu.setBackground(Color.BLACK);
 
         JLabel label1 = new JLabel();
-        label1.setIcon(new ImageIcon(myPicture));
+        label1.setIcon(new ImageIcon("Images/Green_Laser_Mk1.png"));
         towerMenu.add(label1);
         
         JLabel label2 = new JLabel();
-        label2.setIcon(new ImageIcon(myPicture));
+        label2.setIcon(new ImageIcon("Images/Purple_Power_Mk1.png"));
         towerMenu.add(label2);
 
         JLabel label3 = new JLabel();
-        label3.setIcon(new ImageIcon(myPicture));
+        label3.setIcon(new ImageIcon("Images/Orange_Incinerator_Mk1.png"));
         towerMenu.add(label3);
 
         JLabel label4 = new JLabel();
-        label4.setIcon(new ImageIcon(myPicture));
+        label4.setIcon(new ImageIcon("Images/Blue_Rays_Mk1.png"));
         towerMenu.add(label4);
 
+        JLabel label5 = new JLabel();
+        label1.setIcon(new ImageIcon("Images/Green_Laser_Mk2.png"));
+        towerMenu.add(label5);
         
+        JLabel label6 = new JLabel();
+        label2.setIcon(new ImageIcon("Images/Purple_Power_Mk2.png"));
+        towerMenu.add(label6);
+
+        JLabel label7 = new JLabel();
+        label3.setIcon(new ImageIcon("Images/Orange_Incinerator_Mk2.png"));
+        towerMenu.add(label7);
+
+        JLabel label8 = new JLabel();
+        label4.setIcon(new ImageIcon("Images/Blue_Rays_Mk2.png"));
+        towerMenu.add(label8);        
         
         
         
@@ -101,6 +115,7 @@ public class GameFrame extends JFrame {
 
         screen.add(new GamePanel(), BorderLayout.CENTER);
         screen.add(topMenu, BorderLayout.NORTH);
+        screen.add(towerMenu, BorderLayout.EAST);
 
         this.setContentPane(screen);
 
@@ -123,7 +138,7 @@ public class GameFrame extends JFrame {
 
     void update() {
 
-        moneyLabel.setOpaque(true);
+        
     }
 
 }
