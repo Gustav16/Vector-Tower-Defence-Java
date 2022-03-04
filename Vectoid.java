@@ -37,7 +37,7 @@ public class Vectoid {
             dead = true;
             GamePanel.lives -= 1;
             countDead++;
-            VectorTD.frame.moneyLabel.setText("Lives: " + GamePanel.lives);
+            VectorTD.frame.livesLabel.setText("Lives: " + GamePanel.lives);
             if (countDead == maxNumberOfVectoids) {
                 GamePanel.roundStart = false;
 

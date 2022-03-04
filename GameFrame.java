@@ -12,110 +12,28 @@ import javax.swing.BoxLayout;
 
 public class GameFrame extends JFrame {
 
-    static final int SCREEN_WIDTH = 1000;
+    static final int SCREEN_WIDTH = 1100;
     static final int SCREEN_HEIGHT = 1000;
-    final JLabel moneyLabel;
+
+    final JLabel moneyLabel = new JLabel("Money: " + GamePanel.money + "$", SwingConstants.CENTER);
+    final JLabel livesLabel = new JLabel("Lives: " + GamePanel.lives, SwingConstants.CENTER);
+    final JLabel roundLabel = new JLabel("Round: " + GamePanel.round, SwingConstants.CENTER);
+    final JLabel interestLabel = new JLabel("Interest: " + GamePanel.interest + "%", SwingConstants.CENTER);
+
+    JPanel topMenu;
+    JPanel screen;
 
     GameFrame() {
 
-        JPanel screen = new JPanel();
+        screen = new JPanel();
         screen.setLayout(new BorderLayout());
 
-        JPanel topMenu = new JPanel();
-        topMenu.setLayout(new GridLayout(2, 3, 10, 10));
-        topMenu.setBackground(Color.BLACK);
-
-        moneyLabel = new JLabel("Money: " + GamePanel.money + "$", SwingConstants.CENTER);
-        final JLabel livesLabel = new JLabel("Lives: " + GamePanel.lives, SwingConstants.CENTER);
-        final JLabel roundLabel = new JLabel("Round: " + GamePanel.round, SwingConstants.CENTER);
-        final JLabel interestLabel = new JLabel("Interest: " + GamePanel.interest + "%", SwingConstants.CENTER);
-
-        moneyLabel.setOpaque(true);
-        livesLabel.setOpaque(true);
-        roundLabel.setOpaque(true);
-        interestLabel.setOpaque(true);
-
-        moneyLabel.setForeground(Color.white);
-        livesLabel.setForeground(Color.white);
-        roundLabel.setForeground(Color.white);
-        interestLabel.setForeground(Color.white);
-
-        moneyLabel.setBackground(new Color(4, 23, 22));
-        livesLabel.setBackground(new Color(4, 23, 22));
-        roundLabel.setBackground(new Color(4, 23, 22));
-        interestLabel.setBackground(new Color(4, 23, 22));
-
-        JButton roundStart = new JButton("Next round");
-        roundStart.setBackground(new Color(245, 28, 92));
-        roundStart.setFocusPainted(false);
-
-        roundStart.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
-                Vectoid.newRound();
-
-            }
-        });
-
-        JButton autoStart = new JButton("Auto start: " + GamePanel.roundStart);
-        autoStart.setBackground(new Color(245, 28, 92));
-        autoStart.setFocusPainted(false);
-
-        topMenu.add(moneyLabel);
-        topMenu.add(livesLabel);
-        topMenu.add(roundStart);
-        topMenu.add(roundLabel);
-        topMenu.add(interestLabel);
-        topMenu.add(autoStart);
-
-        //JPanel sideMenu = new JPanel();
-        //sideMenu.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
-        //sideMenu.setBackground(Color.BLACK);
-
-        JPanel towerMenu = new JPanel();
-        towerMenu.setLayout(new GridLayout(6, 4, 10, 10));
-        towerMenu.setBackground(Color.BLACK);
-
-        JLabel label1 = new JLabel();
-        label1.setIcon(new ImageIcon("Images/Green_Laser_Mk1.png"));
-        towerMenu.add(label1);
-        
-        JLabel label2 = new JLabel();
-        label2.setIcon(new ImageIcon("Images/Purple_Power_Mk1.png"));
-        towerMenu.add(label2);
-
-        JLabel label3 = new JLabel();
-        label3.setIcon(new ImageIcon("Images/Orange_Incinerator_Mk1.png"));
-        towerMenu.add(label3);
-
-        JLabel label4 = new JLabel();
-        label4.setIcon(new ImageIcon("Images/Blue_Rays_Mk1.png"));
-        towerMenu.add(label4);
-
-        JLabel label5 = new JLabel();
-        label1.setIcon(new ImageIcon("Images/Green_Laser_Mk2.png"));
-        towerMenu.add(label5);
-        
-        JLabel label6 = new JLabel();
-        label2.setIcon(new ImageIcon("Images/Purple_Power_Mk2.png"));
-        towerMenu.add(label6);
-
-        JLabel label7 = new JLabel();
-        label3.setIcon(new ImageIcon("Images/Orange_Incinerator_Mk2.png"));
-        towerMenu.add(label7);
-
-        JLabel label8 = new JLabel();
-        label4.setIcon(new ImageIcon("Images/Blue_Rays_Mk2.png"));
-        towerMenu.add(label8);        
-        
-        
-        
-
-
-
+        // adding top menu
+        addTopMenu();
+        // adding game
         screen.add(new GamePanel(), BorderLayout.CENTER);
-        screen.add(topMenu, BorderLayout.NORTH);
-        screen.add(towerMenu, BorderLayout.EAST);
+        // adding side menu
+        addSideMenu();
 
         this.setContentPane(screen);
 
@@ -136,9 +54,93 @@ public class GameFrame extends JFrame {
 
     }
 
-    void update() {
+    void addSideMenu() {
+        JPanel sideMenu = new JPanel();
+        sideMenu.setLayout(new BoxLayout(sideMenu, BoxLayout.Y_AXIS));
 
-        
+        sideMenu.setBackground(Color.BLACK);
+
+        JPanel towerMenu = new JPanel();
+        towerMenu.setLayout(new GridLayout(2, 4, 0, 0));
+        towerMenu.setBackground(Color.BLACK);
+
+        JButton Green_Laser_Mk1 = new JButton(new ImageIcon("Images/Green_Laser_Mk1.png"));
+        towerMenu.add(Green_Laser_Mk1);
+
+        JButton Purple_Power_Mk1 = new JButton(new ImageIcon("Images/Purple_Power_Mk1.png"));
+        towerMenu.add(Purple_Power_Mk1);
+
+        JButton Orange_Incinerator_Mk1 = new JButton(new ImageIcon("Images/Orange_Incinerator_Mk1.png"));
+        towerMenu.add(Orange_Incinerator_Mk1);
+
+        JButton Blue_Rays_Mk1 = new JButton(new ImageIcon("Images/Blue_Rays_Mk1.png"));
+        towerMenu.add(Blue_Rays_Mk1);
+
+        JButton Green_Laser_Mk2 = new JButton(new ImageIcon("Images/Green_Laser_Mk2.png"));
+        towerMenu.add(Green_Laser_Mk2);
+
+        JButton Purple_Power_Mk2 = new JButton(new ImageIcon("Images/Purple_Power_Mk2.png"));
+        towerMenu.add(Purple_Power_Mk2);
+
+        JButton Orange_Incinerator_Mk2 = new JButton(new ImageIcon("Images/Orange_Incinerator_Mk2.png"));
+        towerMenu.add(Orange_Incinerator_Mk2);
+
+        JButton Blue_Rays_Mk2 = new JButton(new ImageIcon("Images/Blue_Rays_Mk2.png"));
+        towerMenu.add(Blue_Rays_Mk2);
+
+        final JLabel towerMenuName = new JLabel("Towers");
+        towerMenuName.setForeground(Color.white);
+        towerMenuName.setBackground(new Color(4, 23, 22));
+        towerMenuName.setFont(new Font("Verdana", Font.PLAIN, 25));
+
+        final JLabel towerInformation = new JLabel("Orange_Incinerator_Mk1", SwingConstants.CENTER);
+        towerInformation.setForeground(Color.white);
+        towerInformation.setBackground(new Color(4, 23, 22));
+        towerInformation.setFont(new Font("Verdana", Font.PLAIN, 25));
+
+        sideMenu.add(towerMenuName);
+        sideMenu.add(towerMenu);
+        sideMenu.add(towerInformation);
+
+        screen.add(sideMenu, BorderLayout.EAST);
+
+    }
+
+    void addTopMenu() {
+        topMenu = new JPanel();
+        topMenu.setLayout(new GridLayout(2, 3, 10, 10));
+        topMenu.setBackground(Color.BLACK);
+
+        JButton roundStart = new JButton("Next round");
+        roundStart.setBackground(new Color(245, 28, 92));
+        roundStart.setFocusPainted(false);
+
+        roundStart.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                Vectoid.newRound();
+
+            }
+        });
+
+        JButton autoStart = new JButton("Auto start: " + GamePanel.roundStart);
+        autoStart.setBackground(new Color(245, 28, 92));
+        autoStart.setFocusPainted(false);
+
+        addLabel(moneyLabel);
+        addLabel(livesLabel);
+        topMenu.add(roundStart);
+        addLabel(roundLabel);
+        addLabel(interestLabel);
+        topMenu.add(autoStart);
+
+        screen.add(topMenu, BorderLayout.NORTH);
+    }
+
+    void addLabel(JLabel jLabel) {
+        jLabel.setOpaque(true);
+        jLabel.setForeground(Color.white);
+        jLabel.setBackground(new Color(4, 23, 22));
+        topMenu.add(jLabel);
     }
 
 }
