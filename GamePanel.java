@@ -24,7 +24,7 @@ public class GamePanel extends JPanel implements Runnable {
         new Thread(this).start();
         Square.makeGrid();
         Vectoid.makeVectoids();
-        Tower dinmor= new Tower(10,10);
+        Vectoid dinmor= new Vectoid();
 
     }
     
