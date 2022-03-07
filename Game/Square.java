@@ -1,3 +1,4 @@
+package Game;
 import java.awt.*;
 import java.awt.Color;
 
@@ -11,7 +12,7 @@ public class Square extends Rectangle {
       { 10, 5 }, { 14, 5 } };
 
   int x, y;
-  static int width = 40;
+  static int width = 50;
   int strokeWeigth = 2;
 
   Color bodyColor = new Color(29, 69, 64);

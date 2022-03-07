@@ -1,11 +1,14 @@
+package Game;
+
 import java.awt.*;
 import javax.swing.*;
-
-import Towers.Green_Laser_Mk1;
-
+import Towers.Tower;
 import java.awt.Graphics;
+import java.applet.*;
+import java.util.*;
+import java.awt.event.*;
 
-public class GamePanel extends JPanel implements Runnable {
+public class GamePanel extends JPanel implements Runnable, MouseMotionListener {
 
     static Graphics graphics;
     final static int FPS = 100;
@@ -15,19 +18,26 @@ public class GamePanel extends JPanel implements Runnable {
     static public int money = 100;
     static public int round = 0;
     static public int interest = 3;
+    static public boolean selectTower = false;
+    static public Image followMouseImage;
+
+    static int mouseX, mouseY;
 
     static public boolean roundStart = false;
 
-
-
     GamePanel() {
+        addMouseMotionListener(this);
         new Thread(this).start();
         Square.makeGrid();
         Vectoid.makeVectoids();
-        Vectoid dinmor= new Vectoid();
+        System.out.println(Tower.class);
 
     }
-    
+    /*
+     * Toolkit t=Toolkit.getDefaultToolkit();
+     * Image i=t.getImage("p3.gif");
+     * g.drawImage(i, 120,100,this);
+     */
 
     public void paint(Graphics g) {
         Image image = createImage(GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT);
@@ -38,14 +48,32 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void draw(Graphics g) {
+
         Square.drawGrid(g);
         Vectoid.drawVectoids(g);
         Vectoid.spawnVectoids();
+        drawMouseTower(g);
         Toolkit.getDefaultToolkit().sync();
     }
 
+    private void drawMouseTower(Graphics g) {
+        if (selectTower == true) {
 
+            g.setColor(Color.red);
+            g.fillRect(mouseX, mouseY, 50, 50);
+        }
 
+    }
+
+    public void mouseDragged(MouseEvent e) {
+
+    }
+
+    public void mouseMoved(MouseEvent e) {
+        mouseX = e.getX();
+        mouseY = e.getY();
+
+    }
 
     // Gameloop
     public void run() {

@@ -6,8 +6,7 @@ import java.awt.Graphics;
 import javax.imageio.*;
 import java.io.IOException;
 import java.awt.image.*;
-
-
+import Game.GamePanel;
 
 public class Tower {
 
@@ -16,13 +15,12 @@ public class Tower {
     int damage, range, attackSpeed;
     String description;
     boolean showRange = false;
-    BufferedImage img;
+    static public BufferedImage img;
 
     Tower(int xPos, int yPos) {
         try {
             img = ImageIO.read(getClass().getResource("/Images/Green_laser_Mk1.png/"));
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         this.x = xPos;
@@ -33,7 +31,17 @@ public class Tower {
         g.drawImage(img, x, y, null);
     }
 
+
+
+    void infobox(){
+
+
+    }
+
     void buy() {
+        if (GamePanel.selectTower == false) {
+
+        }
 
     }
 

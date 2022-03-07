@@ -1,3 +1,4 @@
+package Game;
 
 //pakke der styrer farver
 import java.awt.Color;
@@ -9,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
+import javax.imageio.*;
 
 public class GameFrame extends JFrame {
 
@@ -22,6 +24,16 @@ public class GameFrame extends JFrame {
 
     JPanel topMenu;
     JPanel screen;
+    JPanel towerMenu;
+
+    JButton Green_Laser_Mk1;
+    JButton Purple_Power_Mk1;
+    JButton Orange_Incinerator_Mk1;
+    JButton Blue_Rays_Mk1;
+    JButton Green_Laser_Mk2;
+    JButton Purple_Power_Mk2;
+    JButton Orange_Incinerator_Mk2;
+    JButton Blue_Rays_Mk2;
 
     GameFrame() {
 
@@ -55,63 +67,50 @@ public class GameFrame extends JFrame {
     }
 
     void addSideMenu() {
-        JPanel sideMenu = new JPanel();
-        sideMenu.setLayout(new BoxLayout(sideMenu, BoxLayout.Y_AXIS));
-        //sideMenu.CENTER_ALIGNMENT;
+        // JPanel sideMenu = new JPanel();
+        // sideMenu.setLayout(new BoxLayout(sideMenu, BoxLayout.Y_AXIS));
+        // sideMenu.CENTER_ALIGNMENT;
+        // sideMenu.setBackground(Color.BLACK);
 
-        sideMenu.setBackground(Color.BLACK);
-
-        JPanel towerMenu = new JPanel();
-        towerMenu.setLayout(new GridLayout(2, 4, 0, 0));
+        towerMenu = new JPanel();
+        towerMenu.setLayout(new GridLayout(2, 4, 10, 10));
         towerMenu.setBackground(Color.BLACK);
 
-        JButton Green_Laser_Mk1 = new JButton(new ImageIcon("Images/Green_Laser_Mk1.png"));
-        towerMenu.add(Green_Laser_Mk1);
+        addtowerBottun(Green_Laser_Mk1,"Images/Green_Laser_Mk1.png" );
+        addtowerBottun(Purple_Power_Mk1,"Images/Purple_Power_Mk1.png" );
+        addtowerBottun(Orange_Incinerator_Mk1,"Images/Orange_Incinerator_Mk1.png" );
+        addtowerBottun(Blue_Rays_Mk1,"Images/Blue_Rays_Mk1.png" );
 
-        JButton Purple_Power_Mk1 = new JButton(new ImageIcon("Images/Purple_Power_Mk1.png"));
-        towerMenu.add(Purple_Power_Mk1);
+        addtowerBottun(Green_Laser_Mk2,"Images/Green_Laser_Mk2.png" );
+        addtowerBottun(Purple_Power_Mk2,"Images/Purple_Power_Mk2.png" );
+        addtowerBottun(Orange_Incinerator_Mk2,"Images/Orange_Incinerator_Mk2.png" );
+        addtowerBottun(Blue_Rays_Mk2,"Images/Blue_Rays_Mk2.png" );
 
-        JButton Orange_Incinerator_Mk1 = new JButton(new ImageIcon("Images/Orange_Incinerator_Mk1.png"));
-        towerMenu.add(Orange_Incinerator_Mk1);
+    
 
-        JButton Blue_Rays_Mk1 = new JButton(new ImageIcon("Images/Blue_Rays_Mk1.png"));
-        towerMenu.add(Blue_Rays_Mk1);
-
-        JButton Green_Laser_Mk2 = new JButton(new ImageIcon("Images/Green_Laser_Mk2.png"));
-        towerMenu.add(Green_Laser_Mk2);
-
-        JButton Purple_Power_Mk2 = new JButton(new ImageIcon("Images/Purple_Power_Mk2.png"));
-        towerMenu.add(Purple_Power_Mk2);
-
-        JButton Orange_Incinerator_Mk2 = new JButton(new ImageIcon("Images/Orange_Incinerator_Mk2.png"));
-        towerMenu.add(Orange_Incinerator_Mk2);
-
-        JButton Blue_Rays_Mk2 = new JButton(new ImageIcon("Images/Blue_Rays_Mk2.png"));
-        towerMenu.add(Blue_Rays_Mk2);
-
-        final JLabel towerMenuName = new JLabel("Towers");
-        towerMenuName.setForeground(Color.white);
-        towerMenuName.setBackground(new Color(4, 23, 22));
-        towerMenuName.setFont(new Font("Verdana", Font.PLAIN, 25));
-
-        final JLabel towerInformation = new JLabel("Orange_Incinerator_Mk1", SwingConstants.CENTER);
-        towerInformation.setForeground(Color.white);
-        towerInformation.setBackground(new Color(4, 23, 22));
-        towerInformation.setFont(new Font("Verdana", Font.PLAIN, 25));
-
-        sideMenu.add(towerMenuName);
-        sideMenu.add(towerMenu);
-        sideMenu.add(towerInformation);
-
-        screen.add(sideMenu, BorderLayout.EAST);
-        //screen.add(towerMenu, BorderLayout.EAST);
+        /*
+         * final JLabel towerMenuName = new JLabel("Towers");
+         * towerMenuName.setForeground(Color.white);
+         * towerMenuName.setBackground(new Color(4, 23, 22));
+         * towerMenuName.setFont(new Font("Verdana", Font.PLAIN, 25));
+         * 
+         * final JLabel towerInformation = new JLabel("Towers");
+         * towerInformation.setForeground(Color.white);
+         * towerInformation.setBackground(new Color(4, 23, 22));
+         * towerInformation.setFont(new Font("Verdana", Font.PLAIN, 25));
+         * 
+         * sideMenu.add(towerMenuName);
+         * sideMenu.add(towerMenu);
+         * sideMenu.add(towerInformation);
+         */
+        screen.add(towerMenu, BorderLayout.EAST);
+        // screen.add(towerMenu, BorderLayout.EAST);
     }
 
     void addTopMenu() {
         topMenu = new JPanel();
         topMenu.setLayout(new GridLayout(2, 3, 10, 10));
         topMenu.setBackground(Color.BLACK);
-        
 
         JButton roundStart = new JButton("Next round");
         roundStart.setBackground(new Color(245, 28, 92));
@@ -145,4 +144,18 @@ public class GameFrame extends JFrame {
         topMenu.add(jLabel);
     }
 
+    void addtowerBottun(JButton name, String img) {
+
+        name = new JButton(new ImageIcon(img));
+
+        name.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                GamePanel.selectTower = true;
+
+            }
+        });
+
+        towerMenu.add(name);
+
+    }
 }
