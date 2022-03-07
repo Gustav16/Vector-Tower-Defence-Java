@@ -13,7 +13,7 @@ import javax.swing.BoxLayout;
 public class GameFrame extends JFrame {
 
     static final int SCREEN_WIDTH = 1100;
-    static final int SCREEN_HEIGHT = 1000;
+    static final int SCREEN_HEIGHT = 800;
 
     final JLabel moneyLabel = new JLabel("Money: " + GamePanel.money + "$", SwingConstants.CENTER);
     final JLabel livesLabel = new JLabel("Lives: " + GamePanel.lives, SwingConstants.CENTER);
@@ -57,6 +57,7 @@ public class GameFrame extends JFrame {
     void addSideMenu() {
         JPanel sideMenu = new JPanel();
         sideMenu.setLayout(new BoxLayout(sideMenu, BoxLayout.Y_AXIS));
+        //sideMenu.CENTER_ALIGNMENT;
 
         sideMenu.setBackground(Color.BLACK);
 
@@ -103,13 +104,14 @@ public class GameFrame extends JFrame {
         sideMenu.add(towerInformation);
 
         screen.add(sideMenu, BorderLayout.EAST);
-
+        //screen.add(towerMenu, BorderLayout.EAST);
     }
 
     void addTopMenu() {
         topMenu = new JPanel();
         topMenu.setLayout(new GridLayout(2, 3, 10, 10));
         topMenu.setBackground(Color.BLACK);
+        
 
         JButton roundStart = new JButton("Next round");
         roundStart.setBackground(new Color(245, 28, 92));

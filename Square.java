@@ -11,7 +11,7 @@ public class Square extends Rectangle {
       { 10, 5 }, { 14, 5 } };
 
   int x, y;
-  static int width = 50;
+  static int width = 40;
   int strokeWeigth = 2;
 
   Color bodyColor = new Color(29, 69, 64);
@@ -36,7 +36,7 @@ public class Square extends Rectangle {
     for (int i = 0; i < collums; i++) {
       for (int j = 0; j < rows; j++) {
 
-        grid[i][j] = new Square(i * 50, j * 50);
+        grid[i][j] = new Square(i * width, j * width);
       }
     }
     makeMap();
@@ -124,36 +124,36 @@ public class Square extends Rectangle {
       if (i == 1) {
 
         if (xDist > 0) {
-          x1 -= 50;
-          xDist += 50;
+          x1 -= width;
+          xDist += width;
         } else if (xDist < 0) {
 
-          x1 += 50;
-          xDist -= 50;
+          x1 += width;
+          xDist -= width;
         } else if (yDist > 0) {
-          y1 -= 50;
-          yDist += 50;
+          y1 -= width;
+          yDist += width;
 
         } else {
-          y1 += 50;
-          yDist -= 50;
+          y1 += width;
+          yDist -= width;
         }
       } else if (i == makeMap.length - 1) {
 
         if (xDist > 0) {
-          x2 += 50;
-          xDist += 50;
+          x2 += width;
+          xDist += width;
         } else if (xDist < 0) {
 
-          x2 -= 50;
-          xDist -= 50;
+          x2 -= width;
+          xDist -= width;
         } else if (yDist > 0) {
-          y2 += 50;
-          yDist += 50;
+          y2 += width;
+          yDist += width;
 
         } else {
-          y2 -= 50;
-          yDist -= 50;
+          y2 -= width;
+          yDist -= width;
         }
       }
 

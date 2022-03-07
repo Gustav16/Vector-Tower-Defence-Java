@@ -1,5 +1,8 @@
 import java.awt.*;
 import javax.swing.*;
+
+import Towers.Green_Laser_Mk1;
+
 import java.awt.Graphics;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -13,13 +16,16 @@ public class GamePanel extends JPanel implements Runnable {
     static public int round = 0;
     static public int interest = 3;
 
-
     static public boolean roundStart = false;
+
+
 
     GamePanel() {
         new Thread(this).start();
         Square.makeGrid();
         Vectoid.makeVectoids();
+        Tower dinmor= new Tower(10,10);
+
     }
     
 
