@@ -12,11 +12,11 @@ public class Square extends Rectangle {
       { 10, 5 }, { 14, 5 } };
 
   int x, y;
-  static int width = 50;
-  int strokeWeigth = 2;
+  public static int width = 44;
+  static int strokeWeigth = 2;
 
   Color bodyColor = new Color(29, 69, 64);
-  Color strokeColor = new Color(0, 0, 0);
+  public Color strokeColor = new Color(0, 0, 0);
   boolean isTowerPlacebel = true;
 
   public static int[][] vectoidRoute;

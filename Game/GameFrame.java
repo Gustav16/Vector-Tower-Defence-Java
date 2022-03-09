@@ -9,8 +9,6 @@ import javax.swing.JButton;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.BoxLayout;
-import javax.imageio.*;
 
 public class GameFrame extends JFrame {
 
@@ -76,17 +74,15 @@ public class GameFrame extends JFrame {
         towerMenu.setLayout(new GridLayout(2, 4, 10, 10));
         towerMenu.setBackground(Color.BLACK);
 
-        addtowerBottun(Green_Laser_Mk1,"Images/Green_Laser_Mk1.png" );
-        addtowerBottun(Purple_Power_Mk1,"Images/Purple_Power_Mk1.png" );
-        addtowerBottun(Orange_Incinerator_Mk1,"Images/Orange_Incinerator_Mk1.png" );
-        addtowerBottun(Blue_Rays_Mk1,"Images/Blue_Rays_Mk1.png" );
+        addtowerBottun(Green_Laser_Mk1, "Images/Green_Laser_Mk1.png");
+        addtowerBottun(Purple_Power_Mk1, "Images/Purple_Power_Mk1.png");
+        addtowerBottun(Orange_Incinerator_Mk1, "Images/Orange_Incinerator_Mk1.png");
+        addtowerBottun(Blue_Rays_Mk1, "Images/Blue_Rays_Mk1.png");
 
-        addtowerBottun(Green_Laser_Mk2,"Images/Green_Laser_Mk2.png" );
-        addtowerBottun(Purple_Power_Mk2,"Images/Purple_Power_Mk2.png" );
-        addtowerBottun(Orange_Incinerator_Mk2,"Images/Orange_Incinerator_Mk2.png" );
-        addtowerBottun(Blue_Rays_Mk2,"Images/Blue_Rays_Mk2.png" );
-
-    
+        addtowerBottun(Green_Laser_Mk2, "Images/Green_Laser_Mk2.png");
+        addtowerBottun(Purple_Power_Mk2, "Images/Purple_Power_Mk2.png");
+        addtowerBottun(Orange_Incinerator_Mk2, "Images/Orange_Incinerator_Mk2.png");
+        addtowerBottun(Blue_Rays_Mk2, "Images/Blue_Rays_Mk2.png");
 
         /*
          * final JLabel towerMenuName = new JLabel("Towers");
@@ -150,7 +146,12 @@ public class GameFrame extends JFrame {
 
         name.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                GamePanel.selectTower = true;
+                if (GamePanel.followMouseImage != img || GamePanel.selectTower == false) {
+                    GamePanel.selectTower = true;
+                    GamePanel.followMouseImage = img;
+                } else {
+                    GamePanel.selectTower = false;
+                }
 
             }
         });

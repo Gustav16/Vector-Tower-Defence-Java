@@ -1,10 +1,7 @@
 package Towers;
 
-import java.awt.*;
-import javax.swing.*;
 import java.awt.Graphics;
-import javax.imageio.*;
-import java.io.IOException;
+
 import java.awt.image.*;
 import Game.GamePanel;
 
@@ -17,19 +14,14 @@ public class Tower {
     boolean showRange = false;
     static public BufferedImage img;
 
-    Tower(int xPos, int yPos) {
-        try {
-            img = ImageIO.read(getClass().getResource("/Images/Green_laser_Mk1.png/"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    Tower(int xPos, int yPos, String towerClass) {
+
         this.x = xPos;
         this.y = yPos;
     }
 
-    void draw(Graphics g) {
-        g.drawImage(img, x, y, null);
-    }
+
+
 
 
 
@@ -38,8 +30,9 @@ public class Tower {
 
     }
 
-    void buy() {
-        if (GamePanel.selectTower == false) {
+      void buy() {
+        if (GamePanel.selectTower == true) {
+            
 
         }
 

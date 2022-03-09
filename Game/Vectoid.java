@@ -11,14 +11,14 @@ public class Vectoid {
 
     int radius = 50;
     float distance = 0;
-    int x = Square.vectoidRoute[Math.round(distance)][0];
-    int y = Square.vectoidRoute[Math.round(distance)][1];
+    public int x = Square.vectoidRoute[Math.round(distance)][0];
+    public int y = Square.vectoidRoute[Math.round(distance)][1];
     float speed = 3;
     int slowTime = 0;
     float slowSpeed = 0;
     int health = 100;
     Color bodyColor = new Color(255, 0, 0);
-    boolean dead = false;
+    public boolean dead = false;
     static long timer;
 
     public void draw(Graphics g) {
