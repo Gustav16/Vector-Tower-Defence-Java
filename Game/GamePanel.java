@@ -53,6 +53,7 @@ public class GamePanel extends JPanel implements Runnable, MouseMotionListener {
         Vectoid.drawVectoids(g);
         Vectoid.spawnVectoids();
         drawMouseTower(g);
+       // g.drawImage(Toolkit.getDefaultToolkit().getImage("Images/Green_Laser_Mk1.png"), 100, 100, this);
         Toolkit.getDefaultToolkit().sync();
     }
 
