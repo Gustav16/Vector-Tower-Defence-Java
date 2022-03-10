@@ -80,9 +80,9 @@ public class GamePanel extends JPanel implements Runnable, MouseMotionListener, 
             System.out.println(y);
         
             if (x < 15 && y < 15 && x >= 0 && y >= 0 && Square.grid[x][y].isTowerPlacebel == true && money>=Green_Laser_Mk1.price) {
-        
+               
               money -= Green_Laser_Mk1.price;
-
+              VectorTD.frame.moneyLabel.setText("Money: " + GamePanel.money + "$");
              Green_Laser_Mk1.towers[Green_Laser_Mk1.count] = new Green_Laser_Mk1(Square.grid[x][y].x+Square.strokeWeigth, Square.grid[x][y].y+Square.strokeWeigth, x, y);
 
               
