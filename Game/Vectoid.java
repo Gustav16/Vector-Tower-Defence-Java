@@ -1,4 +1,5 @@
 package Game;
+
 import java.awt.*;
 import java.awt.Color;
 
@@ -8,17 +9,17 @@ public class Vectoid {
     static int currentNumberOfVectoids = 0;
     public static Vectoid listOfVectoids[] = new Vectoid[10];
     static int countDead = 0;
+    public static int radius = 50;
 
-    int radius = 50;
     float distance = 0;
     public int x = Square.vectoidRoute[Math.round(distance)][0];
     public int y = Square.vectoidRoute[Math.round(distance)][1];
-    float speed = 3;
+    float speed = 1;
     int slowTime = 0;
     float slowSpeed = 0;
     int health = 100;
     Color bodyColor = new Color(255, 0, 0);
-    public boolean dead = false;
+    public boolean dead = true;
     static long timer;
 
     public void draw(Graphics g) {
@@ -49,11 +50,16 @@ public class Vectoid {
 
     public void takeDamage(int damage) {
         health -= damage;
-
         if (health <= 0) {
             dead = true;
-
             GamePanel.money += 10;
+            countDead++;
+            VectorTD.frame.moneyLabel.setText("Money: " + GamePanel.money + "$");
+            if (countDead == maxNumberOfVectoids) {
+                GamePanel.roundStart = false;
+
+            }
+
         }
     }
 
@@ -77,7 +83,8 @@ public class Vectoid {
     }
 
     public static void spawnVectoids() {
-        if ((currentNumberOfVectoids < maxNumberOfVectoids) && (System.nanoTime() - timer) > 300000000) {
+        if ((currentNumberOfVectoids < maxNumberOfVectoids) && (System.nanoTime() - timer) > 300000000
+                && GamePanel.roundStart == true) {
             listOfVectoids[currentNumberOfVectoids].dead = false;
             listOfVectoids[currentNumberOfVectoids].health = 100;
             listOfVectoids[currentNumberOfVectoids].distance = 0;
@@ -92,6 +99,10 @@ public class Vectoid {
         if (GamePanel.roundStart == false) {
             GamePanel.roundStart = true;
             currentNumberOfVectoids = 0;
+            countDead = 0;
+            GamePanel.round++;
+            VectorTD.frame.roundLabel.setText("Round: " + GamePanel.round);
+
             timer = System.nanoTime();
         }
     }

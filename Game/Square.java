@@ -11,9 +11,9 @@ public class Square extends Rectangle {
   public static int[][] makeMap = { { 0, 0 }, { 5, 0 }, { 5, 5 }, { 3, 5 }, { 3, 3 }, { 0, 3 }, { 0, 10 }, { 10, 10 },
       { 10, 5 }, { 14, 5 } };
 
-  int x, y;
+  public int x, y;
   public static int width = 44;
-  static int strokeWeigth = 2;
+  public static int strokeWeigth = 2;
 
   Color bodyColor = new Color(29, 69, 64);
   public Color strokeColor = new Color(0, 0, 0);

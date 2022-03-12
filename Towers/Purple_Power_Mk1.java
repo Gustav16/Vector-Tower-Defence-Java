@@ -2,30 +2,36 @@ package Towers;
 
 import Game.GamePanel;
 import Game.Square;
+import Game.ThickLine;
 import Game.Vectoid;
-
 import java.awt.Graphics;
 import java.awt.*;
 
-public class Green_Laser_Mk1 {
 
-    public static String imagePath = "Images/Green_Laser_Mk1.png";
+import java.awt.Color;
+
+
+
+public class Purple_Power_Mk1 {
+
+    public static String imagePath = "Images/Puple_Power_Mk1.png";
     public static int price = 10;
-    public static Green_Laser_Mk1 towers[] = new Green_Laser_Mk1[100];
+    public static Purple_Power_Mk1 towers[] = new Purple_Power_Mk1[100];
     public static int count = 0;
 
     int target;
-    int damage = 1;
+    int damage = 35;
     int range = 200;
+    int timer = 0;
     int targets = 1;
     int x, y, squareX, squareY;
     boolean showRange = false;
     int centerX;
     int centerY;
 
-    public Green_Laser_Mk1(int squareX, int squareY) {
-        x = Square.grid[squareX][squareY].x+Square.strokeWeigth;
-        y = Square.grid[squareX][squareY].y+Square.strokeWeigth;
+    public Purple_Power_Mk1(int squareX, int squareY) {
+        x = Square.grid[squareX][squareY].x + Square.strokeWeigth;
+        y = Square.grid[squareX][squareY].y + Square.strokeWeigth;
         this.squareX = squareX;
         this.squareY = squareY;
         centerX = x + Square.width / 2 - Square.strokeWeigth / 2;
@@ -35,22 +41,30 @@ public class Green_Laser_Mk1 {
 
     public void draw(Graphics g) {
         g.drawImage(Toolkit.getDefaultToolkit().getImage(imagePath), x, y, null);
-        if (showRange == true) {
+        if (showRange == true) { 
             g.setColor(Color.white);
             g.drawOval(centerX - range, centerY - range, range * 2, range * 2);
         }
     }
 
     public void shoot(Graphics g) {
-        if (Vectoid.listOfVectoids[target].dead == false && inRange(target) == true) {
 
-            g.setColor(Color.green);
-            g.drawLine(centerX, centerY,
-                    Vectoid.listOfVectoids[target].x + Vectoid.radius / 2,
-                    Vectoid.listOfVectoids[target].y + Vectoid.radius / 2);
-            Vectoid.listOfVectoids[target].takeDamage(damage);
+        if (Vectoid.listOfVectoids[target].dead) {
+            timer++;
+
+            int thickness = (int) Math.round(timer/10)+1;
+
+            g.setColor(Color.pink);
+            ThickLine.draw(g, centerX, centerY, Vectoid.listOfVectoids[target].x + Vectoid.radius / 2, Vectoid.listOfVectoids[target].x + Vectoid.radius / 2, thickness, Color.pink);
+
+            if (timer == 100) {
+                timer=0;
+                Vectoid.listOfVectoids[target].takeDamage(damage);
+                pickTarget();
+            }
 
         } else {
+            timer = 0;
             pickTarget();
         }
 

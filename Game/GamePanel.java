@@ -51,12 +51,16 @@ public class GamePanel extends JPanel implements Runnable, MouseMotionListener, 
     }
 
     public void draw(Graphics g) {
+        Vectoid.spawnVectoids();
 
         Square.drawGrid(g);
-        Vectoid.drawVectoids(g);
-        Vectoid.spawnVectoids();
+       
+        
         Green_Laser_Mk1.drawAll(g);
+        Green_Laser_Mk1.shootAll(g);
+        Vectoid.drawVectoids(g);
         drawMouseTower(g);
+
         Toolkit.getDefaultToolkit().sync();
     }
 
@@ -70,20 +74,21 @@ public class GamePanel extends JPanel implements Runnable, MouseMotionListener, 
     public void mouseClicked(MouseEvent e) {
         mousePressedX=mouseX;
         mousePressedY=mouseY;
+        Green_Laser_Mk1.selectAll();
+
+
        
         if (selectTower==true){
             
 
             int x = (int) Math.floor(mouseX / Square.width);
             int y = (int) Math.floor(mouseY / Square.width);
-            System.out.println(x);
-            System.out.println(y);
         
             if (x < 15 && y < 15 && x >= 0 && y >= 0 && Square.grid[x][y].isTowerPlacebel == true && money>=Green_Laser_Mk1.price) {
                
               money -= Green_Laser_Mk1.price;
               VectorTD.frame.moneyLabel.setText("Money: " + GamePanel.money + "$");
-             Green_Laser_Mk1.towers[Green_Laser_Mk1.count] = new Green_Laser_Mk1(Square.grid[x][y].x+Square.strokeWeigth, Square.grid[x][y].y+Square.strokeWeigth, x, y);
+              Green_Laser_Mk1.towers[Green_Laser_Mk1.count] = new Green_Laser_Mk1( x, y);
 
               
               Square.grid[x][y].isTowerPlacebel=false;
