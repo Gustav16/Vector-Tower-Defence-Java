@@ -15,7 +15,7 @@ public class GameFrame extends JFrame {
     static final int SCREEN_WIDTH = 1100;
     static final int SCREEN_HEIGHT = 800;
 
-    final JLabel moneyLabel = new JLabel("Money: " + GamePanel.money + "$", SwingConstants.CENTER);
+    public final JLabel moneyLabel = new JLabel("Money: " + GamePanel.money + "$", SwingConstants.CENTER);
     final JLabel livesLabel = new JLabel("Lives: " + GamePanel.lives, SwingConstants.CENTER);
     final JLabel roundLabel = new JLabel("Round: " + GamePanel.round, SwingConstants.CENTER);
     final JLabel interestLabel = new JLabel("Interest: " + GamePanel.interest + "%", SwingConstants.CENTER);

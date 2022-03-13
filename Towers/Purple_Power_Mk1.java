@@ -2,19 +2,18 @@ package Towers;
 
 import Game.GamePanel;
 import Game.Square;
-import Game.ThickLine;
+
 import Game.Vectoid;
+import Game.VectorTD;
+
 import java.awt.Graphics;
 import java.awt.*;
 
-
 import java.awt.Color;
-
-
 
 public class Purple_Power_Mk1 {
 
-    public static String imagePath = "Images/Puple_Power_Mk1.png";
+    public static String imagePath = "Images/Purple_Power_Mk1.png";
     public static int price = 10;
     public static Purple_Power_Mk1 towers[] = new Purple_Power_Mk1[100];
     public static int count = 0;
@@ -23,9 +22,11 @@ public class Purple_Power_Mk1 {
     int damage = 35;
     int range = 200;
     int timer = 0;
-    int targets = 1;
+    int attackspeed = 100;
     int x, y, squareX, squareY;
     boolean showRange = false;
+    boolean reload = false;
+    boolean shoot = false;
     int centerX;
     int centerY;
 
@@ -41,7 +42,7 @@ public class Purple_Power_Mk1 {
 
     public void draw(Graphics g) {
         g.drawImage(Toolkit.getDefaultToolkit().getImage(imagePath), x, y, null);
-        if (showRange == true) { 
+        if (showRange == true) {
             g.setColor(Color.white);
             g.drawOval(centerX - range, centerY - range, range * 2, range * 2);
         }
@@ -49,26 +50,31 @@ public class Purple_Power_Mk1 {
 
     public void shoot(Graphics g) {
 
-        if (Vectoid.listOfVectoids[target].dead) {
+        if (shoot == true && Vectoid.listOfVectoids[target].dead == false) {
             timer++;
+            g.setColor(new Color(255, 0, 220));
+            g.drawLine(centerX, centerY, Vectoid.listOfVectoids[target].x + Vectoid.radius / 2,
+                    Vectoid.listOfVectoids[target].y + Vectoid.radius / 2);
 
-            int thickness = (int) Math.round(timer/10)+1;
-
-            g.setColor(Color.pink);
-            ThickLine.draw(g, centerX, centerY, Vectoid.listOfVectoids[target].x + Vectoid.radius / 2, Vectoid.listOfVectoids[target].x + Vectoid.radius / 2, thickness, Color.pink);
-
-            if (timer == 100) {
-                timer=0;
+            if (timer == 10) {
+                timer = 0;
                 Vectoid.listOfVectoids[target].takeDamage(damage);
-                pickTarget();
+                shoot = false;
             }
 
-        } else {
+        } else if (Vectoid.listOfVectoids[target].dead==false && timer >= attackspeed && inRange(target) == true) {
+            shoot = true;
             timer = 0;
+
+        } else if (timer >= attackspeed) {
             pickTarget();
+
+        } else {
+            timer++;
         }
 
     }
+
 
     public void pickTarget() {
         for (int j = 0; j < 10; j++) {
@@ -114,10 +120,31 @@ public class Purple_Power_Mk1 {
 
     public static void selectAll() {
 
-        for (int i = 0; i < Green_Laser_Mk1.count; i++) {
-            Green_Laser_Mk1.towers[i].select();
+        for (int i = 0; i < count; i++) {
+            towers[i].select();
 
         }
+
+    }
+
+    public static void buy(int x, int y){
+
+        if (x < 15 && y < 15 && x >= 0 && y >= 0 && Square.grid[x][y].isTowerPlacebel == true && GamePanel.money>=price) {
+                
+               
+            GamePanel.money -= price;
+            VectorTD.frame.moneyLabel.setText("Money: " + GamePanel.money + "$");
+            towers[count] = new Purple_Power_Mk1( x, y);
+
+            
+            Square.grid[x][y].isTowerPlacebel=false;
+            GamePanel.selectTower=false;
+            Purple_Power_Mk1.count++;
+      
+          }
+
+
+
 
     }
 

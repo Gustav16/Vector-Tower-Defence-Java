@@ -17,7 +17,7 @@ public class Square extends Rectangle {
 
   Color bodyColor = new Color(29, 69, 64);
   public Color strokeColor = new Color(0, 0, 0);
-  boolean isTowerPlacebel = true;
+  public boolean isTowerPlacebel = true;
 
   public static int[][] vectoidRoute;
 

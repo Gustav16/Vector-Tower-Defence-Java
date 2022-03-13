@@ -5,6 +5,7 @@ import java.awt.*;
 import javax.swing.*;
 
 import Towers.Green_Laser_Mk1;
+import Towers.Purple_Power_Mk1;
 import Towers.Tower;
 import java.awt.Graphics;
 
@@ -20,6 +21,7 @@ public class GamePanel extends JPanel implements Runnable, MouseMotionListener, 
     static public int money = 10000;
     static public int round = 0;
     static public int interest = 3;
+    static public String whatTower = "none ";
 
     public static int mouseX, mouseY, mousePressedX, mousePressedY;
 
@@ -56,8 +58,8 @@ public class GamePanel extends JPanel implements Runnable, MouseMotionListener, 
         Square.drawGrid(g);
        
         
-        Green_Laser_Mk1.drawAll(g);
-        Green_Laser_Mk1.shootAll(g);
+        Purple_Power_Mk1.drawAll(g);
+        Purple_Power_Mk1.shootAll(g);
         Vectoid.drawVectoids(g);
         drawMouseTower(g);
 
@@ -74,31 +76,38 @@ public class GamePanel extends JPanel implements Runnable, MouseMotionListener, 
     public void mouseClicked(MouseEvent e) {
         mousePressedX=mouseX;
         mousePressedY=mouseY;
+        Purple_Power_Mk1.selectAll();
         Green_Laser_Mk1.selectAll();
 
+        if (selectTower==true){
 
-       
+            
+        }
+
+
+       /*
         if (selectTower==true){
             
 
             int x = (int) Math.floor(mouseX / Square.width);
             int y = (int) Math.floor(mouseY / Square.width);
         
-            if (x < 15 && y < 15 && x >= 0 && y >= 0 && Square.grid[x][y].isTowerPlacebel == true && money>=Green_Laser_Mk1.price) {
+            if (x < 15 && y < 15 && x >= 0 && y >= 0 && Square.grid[x][y].isTowerPlacebel == true && money>=Purple_Power_Mk1.price) {
+                
                
-              money -= Green_Laser_Mk1.price;
+              money -= Purple_Power_Mk1.price;
               VectorTD.frame.moneyLabel.setText("Money: " + GamePanel.money + "$");
-              Green_Laser_Mk1.towers[Green_Laser_Mk1.count] = new Green_Laser_Mk1( x, y);
+              Purple_Power_Mk1.towers[Purple_Power_Mk1.count] = new Purple_Power_Mk1( x, y);
 
               
               Square.grid[x][y].isTowerPlacebel=false;
               selectTower=false;
-              Green_Laser_Mk1.count++;
+              Purple_Power_Mk1.count++;
         
             }
 
         }
-
+*/
     }
 
     public void mouseMoved(MouseEvent e) {

@@ -50,7 +50,7 @@ public class Vectoid {
 
     public void takeDamage(int damage) {
         health -= damage;
-        if (health <= 0) {
+        if (health <= 0 && dead==false) {
             dead = true;
             GamePanel.money += 10;
             countDead++;
