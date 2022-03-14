@@ -21,7 +21,7 @@ public class GamePanel extends JPanel implements Runnable, MouseMotionListener, 
     static public int money = 10000;
     static public int round = 0;
     static public int interest = 3;
-    static public String whatTower = "none ";
+    static public String whatTower = "non";
 
     public static int mouseX, mouseY, mousePressedX, mousePressedY;
 
@@ -67,7 +67,7 @@ public class GamePanel extends JPanel implements Runnable, MouseMotionListener, 
     }
 
     private void drawMouseTower(Graphics g) {
-        if (selectTower == true) {
+        if (followMouseImage != "non") {
             g.drawImage(Toolkit.getDefaultToolkit().getImage(followMouseImage), mouseX, mouseY, null);
         }
 
@@ -79,35 +79,21 @@ public class GamePanel extends JPanel implements Runnable, MouseMotionListener, 
         Purple_Power_Mk1.selectAll();
         Green_Laser_Mk1.selectAll();
 
-        if (selectTower==true){
+        int x = (int) Math.floor(mouseX / Square.width);
+        int y = (int) Math.floor(mouseY / Square.width);
 
+        if (followMouseImage=="Images/Green_Laser_Mk1.png"){
             
-        }
-
-
-       /*
-        if (selectTower==true){
+            Green_Laser_Mk1.buy(x,y);
             
 
-            int x = (int) Math.floor(mouseX / Square.width);
-            int y = (int) Math.floor(mouseY / Square.width);
-        
-            if (x < 15 && y < 15 && x >= 0 && y >= 0 && Square.grid[x][y].isTowerPlacebel == true && money>=Purple_Power_Mk1.price) {
-                
-               
-              money -= Purple_Power_Mk1.price;
-              VectorTD.frame.moneyLabel.setText("Money: " + GamePanel.money + "$");
-              Purple_Power_Mk1.towers[Purple_Power_Mk1.count] = new Purple_Power_Mk1( x, y);
+            
+        } else if (followMouseImage=="Images/Purple_Power_Mk1.png"){
+            Purple_Power_Mk1.buy(x, y);
 
-              
-              Square.grid[x][y].isTowerPlacebel=false;
-              selectTower=false;
-              Purple_Power_Mk1.count++;
-        
-            }
 
         }
-*/
+
     }
 
     public void mouseMoved(MouseEvent e) {

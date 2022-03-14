@@ -135,6 +135,7 @@ public class Purple_Power_Mk1 {
             GamePanel.money -= price;
             VectorTD.frame.moneyLabel.setText("Money: " + GamePanel.money + "$");
             towers[count] = new Purple_Power_Mk1( x, y);
+            GamePanel.followMouseImage="non";
 
             
             Square.grid[x][y].isTowerPlacebel=false;

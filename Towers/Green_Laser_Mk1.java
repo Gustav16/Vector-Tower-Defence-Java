@@ -6,7 +6,7 @@ import Game.Vectoid;
 
 import java.awt.Graphics;
 import java.awt.*;
-
+import Game.VectorTD;
 public class Green_Laser_Mk1 {
 
     public static String imagePath = "Images/Green_Laser_Mk1.png";
@@ -117,6 +117,28 @@ public class Green_Laser_Mk1 {
             Square.grid[squareX][squareY].strokeColor = Color.black;
             showRange = false;
         }
+
+    }
+
+    public static void buy(int x, int y){
+
+        if (x < 15 && y < 15 && x >= 0 && y >= 0 && Square.grid[x][y].isTowerPlacebel == true && GamePanel.money>=price) {
+                
+               
+            GamePanel.money -= price;
+            VectorTD.frame.moneyLabel.setText("Money: " + GamePanel.money + "$");
+            towers[count] = new Green_Laser_Mk1( x, y);
+            GamePanel.followMouseImage="non";
+
+            
+            Square.grid[x][y].isTowerPlacebel=false;
+            GamePanel.selectTower=false;
+            Green_Laser_Mk1.count++;
+      
+          }
+
+
+
 
     }
 
