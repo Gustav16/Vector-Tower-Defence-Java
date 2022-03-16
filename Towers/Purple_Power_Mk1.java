@@ -25,7 +25,6 @@ public class Purple_Power_Mk1 {
     int attackspeed = 100;
     int x, y, squareX, squareY;
     boolean showRange = false;
-    boolean reload = false;
     boolean shoot = false;
     int centerX;
     int centerY;
@@ -50,31 +49,37 @@ public class Purple_Power_Mk1 {
 
     public void shoot(Graphics g) {
 
-        if (shoot == true && Vectoid.listOfVectoids[target].dead == false) {
-            timer++;
-            g.setColor(new Color(255, 0, 220));
-            g.drawLine(centerX, centerY, Vectoid.listOfVectoids[target].x + Vectoid.radius / 2,
-                    Vectoid.listOfVectoids[target].y + Vectoid.radius / 2);
+        if (shoot == true) {
+            if (Vectoid.listOfVectoids[target].dead == false) {
+                timer++;
+                g.setColor(new Color(255, 0, 220));
+                g.drawLine(centerX, centerY, Vectoid.listOfVectoids[target].x + Vectoid.radius / 2,
+                        Vectoid.listOfVectoids[target].y + Vectoid.radius / 2);
 
-            if (timer == 10) {
-                timer = 0;
-                Vectoid.listOfVectoids[target].takeDamage(damage);
+                if (timer == 10) {
+                    timer = 0;
+                    Vectoid.listOfVectoids[target].takeDamage(damage);
+                    shoot = false;
+                }
+            } else {
                 shoot = false;
+                timer = attackspeed;
             }
+        }
 
-        } else if (Vectoid.listOfVectoids[target].dead==false && timer >= attackspeed && inRange(target) == true) {
-            shoot = true;
-            timer = 0;
-
-        } else if (timer >= attackspeed) {
+        if (timer >= attackspeed && shoot == false) {
             pickTarget();
 
-        } else {
+            if (inRange(target) == true) {
+                shoot = true;
+                timer = 0;
+            }
+
+        } else if (shoot == false) {
             timer++;
         }
 
     }
-
 
     public void pickTarget() {
         for (int j = 0; j < 10; j++) {
@@ -127,25 +132,21 @@ public class Purple_Power_Mk1 {
 
     }
 
-    public static void buy(int x, int y){
+    public static void buy(int x, int y) {
 
-        if (x < 15 && y < 15 && x >= 0 && y >= 0 && Square.grid[x][y].isTowerPlacebel == true && GamePanel.money>=price) {
-                
-               
+        if (x < 15 && y < 15 && x >= 0 && y >= 0 && Square.grid[x][y].isTowerPlacebel == true
+                && GamePanel.money >= price) {
+
             GamePanel.money -= price;
             VectorTD.frame.moneyLabel.setText("Money: " + GamePanel.money + "$");
-            towers[count] = new Purple_Power_Mk1( x, y);
-            GamePanel.followMouseImage="non";
+            towers[count] = new Purple_Power_Mk1(x, y);
+            GamePanel.followMouseImage = "non";
 
-            
-            Square.grid[x][y].isTowerPlacebel=false;
-            GamePanel.selectTower=false;
+            Square.grid[x][y].isTowerPlacebel = false;
+            GamePanel.selectTower = false;
             Purple_Power_Mk1.count++;
-      
-          }
 
-
-
+        }
 
     }
 

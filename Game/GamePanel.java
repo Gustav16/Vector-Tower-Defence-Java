@@ -12,8 +12,7 @@ import java.awt.Graphics;
 import java.awt.event.*;
 
 public class GamePanel extends JPanel implements Runnable, MouseMotionListener, MouseListener {
-   
-   
+
     static Graphics graphics;
     final static int FPS = 100;
     final static public long SKIP_TICKS = 1000000000 / FPS;
@@ -27,16 +26,11 @@ public class GamePanel extends JPanel implements Runnable, MouseMotionListener, 
 
     static public boolean roundStart = false;
 
-    
     static public boolean selectTower = false;
     static public String followMouseImage;
 
-    
-
-   
-
     GamePanel() {
-        addMouseListener(this);  
+        addMouseListener(this);
         addMouseMotionListener(this);
         new Thread(this).start();
         Square.makeGrid();
@@ -56,10 +50,11 @@ public class GamePanel extends JPanel implements Runnable, MouseMotionListener, 
         Vectoid.spawnVectoids();
 
         Square.drawGrid(g);
-       
-        
+
         Purple_Power_Mk1.drawAll(g);
+        Green_Laser_Mk1.drawAll(g);
         Purple_Power_Mk1.shootAll(g);
+        Green_Laser_Mk1.shootAll(g);
         Vectoid.drawVectoids(g);
         drawMouseTower(g);
 
@@ -74,23 +69,20 @@ public class GamePanel extends JPanel implements Runnable, MouseMotionListener, 
     }
 
     public void mouseClicked(MouseEvent e) {
-        mousePressedX=mouseX;
-        mousePressedY=mouseY;
+        mousePressedX = mouseX;
+        mousePressedY = mouseY;
         Purple_Power_Mk1.selectAll();
         Green_Laser_Mk1.selectAll();
 
         int x = (int) Math.floor(mouseX / Square.width);
         int y = (int) Math.floor(mouseY / Square.width);
 
-        if (followMouseImage=="Images/Green_Laser_Mk1.png"){
-            
-            Green_Laser_Mk1.buy(x,y);
-            
+        if (followMouseImage == "Images/Green_Laser_Mk1.png") {
 
-            
-        } else if (followMouseImage=="Images/Purple_Power_Mk1.png"){
+            Green_Laser_Mk1.buy(x, y);
+
+        } else if (followMouseImage == "Images/Purple_Power_Mk1.png") {
             Purple_Power_Mk1.buy(x, y);
-
 
         }
 
@@ -101,8 +93,6 @@ public class GamePanel extends JPanel implements Runnable, MouseMotionListener, 
         mouseY = e.getY();
 
     }
-
-
 
     public void mouseDragged(MouseEvent e) {
 
@@ -120,8 +110,6 @@ public class GamePanel extends JPanel implements Runnable, MouseMotionListener, 
     public void mouseExited(MouseEvent e) {
 
     }
-
-
 
     // Gameloop
     public void run() {
