@@ -51,10 +51,9 @@ public class GamePanel extends JPanel implements Runnable, MouseMotionListener, 
 
         Square.drawGrid(g);
 
-        Purple_Power_Mk1.drawAll(g);
-        Green_Laser_Mk1.drawAll(g);
-        Purple_Power_Mk1.shootAll(g);
-        Green_Laser_Mk1.shootAll(g);
+
+        Tower.drawAllTowers(g);
+        Tower.shootAllTowers(g);
         Vectoid.drawVectoids(g);
         drawMouseTower(g);
 
@@ -71,8 +70,7 @@ public class GamePanel extends JPanel implements Runnable, MouseMotionListener, 
     public void mouseClicked(MouseEvent e) {
         mousePressedX = mouseX;
         mousePressedY = mouseY;
-        Purple_Power_Mk1.selectAll();
-        Green_Laser_Mk1.selectAll();
+        Tower.selectAllTowers();
 
         int x = (int) Math.floor(mouseX / Square.width);
         int y = (int) Math.floor(mouseY / Square.width);

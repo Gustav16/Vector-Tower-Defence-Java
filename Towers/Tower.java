@@ -34,17 +34,6 @@ public class Tower {
 
  
 
-    public void pickTarget() {
-        for (int j = 0; j < 10; j++) {
-            if (Vectoid.listOfVectoids[j].dead == false && inRange(j) == true) {
-                target = j;
-                break;
-            }
-
-        }
-
-    }
-
     boolean inRange(int target) {
 
         int a = centerX - (Vectoid.listOfVectoids[target].x + Vectoid.radius / 2);
@@ -61,23 +50,6 @@ public class Tower {
 
     }
 
-    public void select() {
-        if (GamePanel.mousePressedX >= x && GamePanel.mousePressedX < x + Square.width && GamePanel.mousePressedY >= y
-                && GamePanel.mousePressedY < this.y + Square.width) {
-            Square.grid[squareX][squareY].strokeColor = Color.white;
-            showRange = true;
-        } else {
-
-            Square.grid[squareX][squareY].strokeColor = Color.black;
-            showRange = false;
-        }
-
-    }
-
-    public static final void de(){
-
-        
-    }
 
     public static void drawAll(Graphics g) {
         for (int i = 0; i < count; i++) {
@@ -100,6 +72,37 @@ public class Tower {
             Green_Laser_Mk1.towers[i].select();
 
         }
+
+    }
+    public void select() {
+        if (GamePanel.mousePressedX >= x && GamePanel.mousePressedX < x + Square.width && GamePanel.mousePressedY >= y
+                && GamePanel.mousePressedY < this.y + Square.width) {
+            Square.grid[squareX][squareY].strokeColor = Color.white;
+            this.showRange = true;
+        } else {
+
+            Square.grid[squareX][squareY].strokeColor = Color.black;
+            this.showRange = false;
+        }
+
+    }
+
+  
+
+    public static final void drawAllTowers(Graphics g) {
+        Purple_Power_Mk1.shootAll(g);
+        Green_Laser_Mk1.shootAll(g);
+    }
+
+    public static final void shootAllTowers(Graphics g) {
+        Purple_Power_Mk1.drawAll(g);
+        Green_Laser_Mk1.drawAll(g);
+
+    }
+
+    public static final void selectAllTowers() {
+        Purple_Power_Mk1.selectAll();
+        Green_Laser_Mk1.selectAll();
 
     }
 
