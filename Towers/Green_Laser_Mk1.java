@@ -8,36 +8,20 @@ import java.awt.Graphics;
 import java.awt.*;
 import Game.VectorTD;
 
+
+
 public class Green_Laser_Mk1 extends Tower{
 
-    public static String imagePath = "Images/Green_Laser_Mk1.png";
-    public static int price = 10;
     public static Green_Laser_Mk1 towers[] = new Green_Laser_Mk1[100];
-    public static int count = 0;
-
-    int damage = 1;
-    int range = 200;
-    int targets = 1;
-    int x, y, squareX, squareY, centerX, centerY;
 
     public Green_Laser_Mk1(int squareX, int squareY) {
         super(squareX, squareY);
-        x = Square.grid[squareX][squareY].x+Square.strokeWeigth;
-        y = Square.grid[squareX][squareY].y+Square.strokeWeigth;
-        this.squareX = squareX;
-        this.squareY = squareY;
-        centerX = x + Square.width / 2 - Square.strokeWeigth / 2;
-        centerY = y + Square.width / 2 - Square.strokeWeigth / 2;
-
+        imagePath = "Images/Green_Laser_Mk1.png";
+        range = 200;
+        price = 10;
+        damage = 1;
     }
 
-    public void draw(Graphics g) {
-        g.drawImage(Toolkit.getDefaultToolkit().getImage(imagePath), x, y, null);
-        if (showRange == true) {
-            g.setColor(Color.white);
-            g.drawOval(centerX - range, centerY - range, range * 2, range * 2);
-        }
-    }
 
     public void shoot(Graphics g) {
         if (Vectoid.listOfVectoids[target].dead == false && inRange(target) == true) {
@@ -65,32 +49,6 @@ public class Green_Laser_Mk1 extends Tower{
 
     }
 
-
-    public static void drawAll(Graphics g) {
-        for (int i = 0; i < count; i++) {
-            towers[i].draw(g);
-        }
-    }
-
-    public static void shootAll(Graphics g) {
-
-        for (int i = 0; i < count; i++) {
-            towers[i].shoot(g);
-
-        }
-
-    }
-
-    public static void selectAll() {
-
-        for (int i = 0; i < Green_Laser_Mk1.count; i++) {
-            Green_Laser_Mk1.towers[i].select();
-
-        }
-
-    }
-
- 
 
     public static void buy(int x, int y){
 

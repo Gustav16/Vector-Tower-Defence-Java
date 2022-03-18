@@ -77,6 +77,8 @@ public class GamePanel extends JPanel implements Runnable, MouseMotionListener, 
 
         if (followMouseImage == "Images/Green_Laser_Mk1.png") {
 
+            System.out.println("joe");
+
             Green_Laser_Mk1.buy(x, y);
 
         } else if (followMouseImage == "Images/Purple_Power_Mk1.png") {
