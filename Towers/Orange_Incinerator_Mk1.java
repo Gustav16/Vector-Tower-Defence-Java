@@ -60,6 +60,7 @@ public class Orange_Incinerator_Mk1 extends Tower {
                   
                   
                   Vectoid.listOfVectoids[j].takeDamage(damage);
+                  Vectoid.listOfVectoids[j].burn(2, 25);
                   
                   }
                   

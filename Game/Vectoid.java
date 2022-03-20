@@ -17,11 +17,13 @@ public class Vectoid {
     float distance = 0;
     int slowTime = 0;
     float slowSpeed = 0;
-    int health = 1000;
+    int currentHealth;
+    public static int maxHealth = 1000;
 
-
+    
     public int x = Square.vectoidRoute[Math.round(distance)][0];
     public int y = Square.vectoidRoute[Math.round(distance)][1];
+    public int degrees = 0;
 
     float speed = 1;
     Color bodyColor = new Color(255, 0, 0);
@@ -29,8 +31,9 @@ public class Vectoid {
     static long timer;
 
     int burnTimeRemaining = 0;
-    int burnDamage;
+    int burnDamage = 0;
     int burnTicks = 0;
+
 
   
 
@@ -38,19 +41,44 @@ public class Vectoid {
 
 
     public void draw(Graphics g) {
-        x = Square.vectoidRoute[Math.round(distance)][0];
-        y = Square.vectoidRoute[Math.round(distance)][1];
-        g.setColor(bodyColor);
-        g.fillOval(x, y, radius, radius);
 
         if (burnTimeRemaining != 0){
+            
+            g.setColor(Color.orange);
             burnTicks++;
             if (burnTicks==100){
                 burnTimeRemaining--;
+            
                 takeDamage(burnDamage);
+                burnTicks=0;
 
             }
+        } else {
+            g.setColor(bodyColor);
+
         }
+        
+    
+        
+        
+        
+        
+        x = Square.vectoidRoute[Math.round(distance)][0];
+        y = Square.vectoidRoute[Math.round(distance)][1];
+        //g2d.rotate(Math.toRadians(degrees));
+        degrees++;
+        
+        //g.translate(x,y);
+        int[] pentagonX = {10 + 2 + x, 4 + 2 + x, 20 + 2 + x, 36 + 2 + x, 30 + 2 + x};
+        int[] pentagonY = {40 + y, 21 + y, 9 + y, 21 + y, 40 + y};
+        
+        
+   
+        //g.fillOval(x, y, radius, radius);
+        g.fillPolygon( pentagonX, pentagonY, 5 );
+        g.setColor(Color.black);
+        g.drawPolygon( pentagonX, pentagonY, 5 );
+
     }
 
     public void move() {
@@ -73,8 +101,10 @@ public class Vectoid {
     }
 
     public void takeDamage(int damage) {
-        health -= damage;
-        if (health <= 0 && dead==false) {
+        currentHealth -= damage;
+
+        System.out.println(currentHealth);
+        if (currentHealth <= 0 && dead==false) {
             dead = true;
             GamePanel.money += 10;
             countDead++;
@@ -88,9 +118,9 @@ public class Vectoid {
         }
     }
 
-    public void burn(int seconds, int damagePerTick){
+    public void burn(int seconds, int dps){
         burnTimeRemaining = seconds;
-        burnDamage = damagePerTick;
+        burnDamage = dps;
 
 
 
@@ -117,10 +147,10 @@ public class Vectoid {
     }
 
     public static void spawnVectoids() {
-        if ((currentNumberOfVectoids < maxNumberOfVectoids) && (System.nanoTime() - timer) > 300000000
+        if ((currentNumberOfVectoids < maxNumberOfVectoids) && (System.nanoTime() - timer) > 450000000
                 && GamePanel.roundStart == true) {
             listOfVectoids[currentNumberOfVectoids].dead = false;
-            listOfVectoids[currentNumberOfVectoids].health = 100;
+            listOfVectoids[currentNumberOfVectoids].currentHealth = maxHealth;
             listOfVectoids[currentNumberOfVectoids].distance = 0;
             currentNumberOfVectoids++;
             timer = System.nanoTime();
