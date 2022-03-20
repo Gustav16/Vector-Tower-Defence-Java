@@ -5,28 +5,52 @@ import java.awt.Color;
 
 public class Vectoid {
 
-    static int maxNumberOfVectoids = 10;
-    static int currentNumberOfVectoids = 0;
+
+
     public static Vectoid listOfVectoids[] = new Vectoid[10];
-    static int countDead = 0;
     public static int radius = 50;
 
+    static int maxNumberOfVectoids = 10;
+    static int currentNumberOfVectoids = 0;
+    static int countDead = 0;
+
     float distance = 0;
-    public int x = Square.vectoidRoute[Math.round(distance)][0];
-    public int y = Square.vectoidRoute[Math.round(distance)][1];
-    float speed = 1;
     int slowTime = 0;
     float slowSpeed = 0;
-    int health = 100;
+    int health = 1000;
+
+
+    public int x = Square.vectoidRoute[Math.round(distance)][0];
+    public int y = Square.vectoidRoute[Math.round(distance)][1];
+
+    float speed = 1;
     Color bodyColor = new Color(255, 0, 0);
     public boolean dead = true;
     static long timer;
+
+    int burnTimeRemaining = 0;
+    int burnDamage;
+    int burnTicks = 0;
+
+  
+
+
+
 
     public void draw(Graphics g) {
         x = Square.vectoidRoute[Math.round(distance)][0];
         y = Square.vectoidRoute[Math.round(distance)][1];
         g.setColor(bodyColor);
         g.fillOval(x, y, radius, radius);
+
+        if (burnTimeRemaining != 0){
+            burnTicks++;
+            if (burnTicks==100){
+                burnTimeRemaining--;
+                takeDamage(burnDamage);
+
+            }
+        }
     }
 
     public void move() {
@@ -54,6 +78,7 @@ public class Vectoid {
             dead = true;
             GamePanel.money += 10;
             countDead++;
+            
             VectorTD.frame.moneyLabel.setText("Money: " + GamePanel.money + "$");
             if (countDead == maxNumberOfVectoids) {
                 GamePanel.roundStart = false;
@@ -61,6 +86,15 @@ public class Vectoid {
             }
 
         }
+    }
+
+    public void burn(int seconds, int damagePerTick){
+        burnTimeRemaining = seconds;
+        burnDamage = damagePerTick;
+
+
+
+
     }
 
     public static void drawVectoids(Graphics g) {

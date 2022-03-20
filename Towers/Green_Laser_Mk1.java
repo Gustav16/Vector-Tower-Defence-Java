@@ -13,13 +13,16 @@ import Game.VectorTD;
 public class Green_Laser_Mk1 extends Tower{
 
     public static Green_Laser_Mk1 towers[] = new Green_Laser_Mk1[100];
+    public static int price = 10;
+    public static int count = 0;
+
 
     public Green_Laser_Mk1(int squareX, int squareY) {
         super(squareX, squareY);
         imagePath = "Images/Green_Laser_Mk1.png";
         range = 200;
-        price = 10;
         damage = 1;
+        
     }
 
 
@@ -59,11 +62,10 @@ public class Green_Laser_Mk1 extends Tower{
             VectorTD.frame.moneyLabel.setText("Money: " + GamePanel.money + "$");
             towers[count] = new Green_Laser_Mk1( x, y);
             GamePanel.followMouseImage="non";
-
-            
             Square.grid[x][y].isTowerPlacebel=false;
             GamePanel.selectTower=false;
-            Green_Laser_Mk1.count++;
+            count++;
+  
       
           }
 

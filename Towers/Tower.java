@@ -3,16 +3,15 @@ package Towers;
 import Game.GamePanel;
 import Game.Square;
 import Game.Vectoid;
-import Game.VectorTD;
+
 
 import java.awt.Graphics;
 import java.awt.*;
 
 public class Tower {
 
-    public static String imagePath;
-    public static int price;
-    public static int count = 0;
+    
+    String imagePath;
     int target;
     int damage;
     int range;
@@ -75,8 +74,13 @@ public class Tower {
         }
 
         for (int i = 0; i < Purple_Power_Mk1.count; i++) {
-           // Purple_Power_Mk1.towers[i].draw(g);
+            Purple_Power_Mk1.towers[i].draw(g);
         }
+
+        for (int i = 0; i < Orange_Incinerator_Mk1.count; i++) {
+            Orange_Incinerator_Mk1.towers[i].draw(g);
+        }
+
     }
 
     public static final void shootAllTowers(Graphics g) {
@@ -87,7 +91,12 @@ public class Tower {
         }
 
         for (int i = 0; i < Purple_Power_Mk1.count; i++) {
-            //Purple_Power_Mk1.towers[i].shoot(g);
+            Purple_Power_Mk1.towers[i].shoot(g);
+
+        }
+
+        for (int i = 0; i < Orange_Incinerator_Mk1.count; i++) {
+            Orange_Incinerator_Mk1.towers[i].shoot(g);
 
         }
 
@@ -101,9 +110,14 @@ public class Tower {
         }
 
         for (int i = 0; i < Purple_Power_Mk1.count; i++) {
-           // Purple_Power_Mk1.towers[i].select();
+           Purple_Power_Mk1.towers[i].select();
 
         }
+
+        for (int i = 0; i < Orange_Incinerator_Mk1.count; i++) {
+            Orange_Incinerator_Mk1.towers[i].select();
+ 
+         }
 
     }
 

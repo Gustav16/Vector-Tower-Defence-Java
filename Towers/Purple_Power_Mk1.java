@@ -7,7 +7,7 @@ import Game.Vectoid;
 import Game.VectorTD;
 
 import java.awt.Graphics;
-import java.awt.*;
+
 
 import java.awt.Color;
 
@@ -15,6 +15,8 @@ public class Purple_Power_Mk1 extends Tower{
 
 
     public static Purple_Power_Mk1 towers[] = new Purple_Power_Mk1[100];
+    public static int price = 40;
+    public static int count = 0;
 
     int timer = 0;
     int attackspeed = 100;
@@ -25,7 +27,7 @@ public class Purple_Power_Mk1 extends Tower{
         super(squareX, squareY);
         imagePath = "Images/Purple_Power_Mk1.png";
         range = 250;
-        price = 40;
+        
         damage = 35;
   
 
@@ -81,22 +83,23 @@ public class Purple_Power_Mk1 extends Tower{
 
     public static void buy(int x, int y) {
 
-        if (x < 15 && y < 15 && x >= 0 && y >= 0 && Square.grid[x][y].isTowerPlacebel == true
-                && GamePanel.money >= price) {
+        
 
+        if (x < 15 && y < 15 && x >= 0 && y >= 0 && Square.grid[x][y].isTowerPlacebel == true && GamePanel.money >= price) {
+
+           
             GamePanel.money -= price;
             VectorTD.frame.moneyLabel.setText("Money: " + GamePanel.money + "$");
             towers[count] = new Purple_Power_Mk1(x, y);
             GamePanel.followMouseImage = "non";
-
             Square.grid[x][y].isTowerPlacebel = false;
             GamePanel.selectTower = false;
-            Purple_Power_Mk1.count++;
+            count++;
+     
+      
 
         }
 
     }
-
-
 
 }
