@@ -45,10 +45,7 @@ public class Vectoid {
                 burnTicks = 0;
             }
 
-            if (burnTimeRemaining == 0) {
-                bodyColor = Color.red;
-
-            }
+       
         }
 
         if (maxHealth != currentHealth) {
@@ -114,7 +111,6 @@ public class Vectoid {
     public void burn(int seconds, int dps) {
         burnTimeRemaining = seconds;
         burnDamage = dps;
-        bodyColor = new Color(199, 106, 0);
 
     }
 
@@ -144,6 +140,26 @@ public class Vectoid {
             listOfVectoids[currentNumberOfVectoids].currentHealth = maxHealth;
             listOfVectoids[currentNumberOfVectoids].distance = 0;
             listOfVectoids[currentNumberOfVectoids].type = typeList[waveType];
+
+            if (listOfVectoids[currentNumberOfVectoids].type=="grass"){
+                listOfVectoids[currentNumberOfVectoids].bodyColor = new Color(0, 255, 33);
+
+
+            } else if (listOfVectoids[currentNumberOfVectoids].type=="fire"){
+                listOfVectoids[currentNumberOfVectoids].bodyColor = new Color(255, 136, 0);
+
+            } else if (listOfVectoids[currentNumberOfVectoids].type=="ice"){
+                listOfVectoids[currentNumberOfVectoids].bodyColor = new Color(49, 185, 230);
+
+            } else if (listOfVectoids[currentNumberOfVectoids].type=="void") {
+                listOfVectoids[currentNumberOfVectoids].bodyColor = new Color(255, 0, 220);
+
+            } else if (listOfVectoids[currentNumberOfVectoids].type=="netural"){
+                listOfVectoids[currentNumberOfVectoids].bodyColor = new Color(155, 163, 162);
+
+            }
+
+            
             
 
             currentNumberOfVectoids++;
@@ -162,10 +178,12 @@ public class Vectoid {
             GamePanel.round++;
             if (waveType == 4) {
                 GamePanel.interest++;
+                VectorTD.frame.interestLabel.setText("Interest: " + GamePanel.interest + "%");
                 waveType = 0;
             } else {
                 waveType++;
             }
+
             VectorTD.frame.roundLabel.setText("Round: " + GamePanel.round);
 
             timer = System.nanoTime();
