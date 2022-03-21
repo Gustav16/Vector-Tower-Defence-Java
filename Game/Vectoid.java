@@ -7,16 +7,21 @@ public class Vectoid {
 
     public static Vectoid listOfVectoids[] = new Vectoid[10];
     public static int radius = 50;
+    public static int maxHealth = 550;
+
+    public static String typeList[] = { "grass", "fire", "ice", "void", "netural" };
+    static int waveType = -1;
 
     static int maxNumberOfVectoids = 10;
     static int currentNumberOfVectoids = 0;
     static int countDead = 0;
+    static long timer;
 
     float distance = 0;
     int slowTime = 0;
     float slowSpeed = 0;
     int currentHealth;
-    public static int maxHealth = 550;
+    String type;
 
     public int x = Square.vectoidRoute[Math.round(distance)][0];
     public int y = Square.vectoidRoute[Math.round(distance)][1];
@@ -24,7 +29,6 @@ public class Vectoid {
     float speed = 1;
     Color bodyColor = new Color(255, 0, 0);
     public boolean dead = true;
-    static long timer;
 
     int burnTimeRemaining = 0;
     int burnDamage = 0;
@@ -48,11 +52,11 @@ public class Vectoid {
         }
 
         if (maxHealth != currentHealth) {
-       
-            g.setColor(Color.green);
-            int healthBarWidth =Math.round((currentHealth*40)/maxHealth);
 
-            g.fillRect(2+x, y, healthBarWidth , 5);
+            g.setColor(Color.green);
+            int healthBarWidth = Math.round((currentHealth * 40) / maxHealth);
+
+            g.fillRect(2 + x, y, healthBarWidth, 5);
 
         }
 
@@ -91,7 +95,6 @@ public class Vectoid {
     public void takeDamage(int damage) {
         currentHealth -= damage;
 
-      
         if (currentHealth <= 0 && dead == false) {
             dead = true;
             GamePanel.money += 10;
@@ -140,6 +143,9 @@ public class Vectoid {
             listOfVectoids[currentNumberOfVectoids].dead = false;
             listOfVectoids[currentNumberOfVectoids].currentHealth = maxHealth;
             listOfVectoids[currentNumberOfVectoids].distance = 0;
+            listOfVectoids[currentNumberOfVectoids].type = typeList[waveType];
+            
+
             currentNumberOfVectoids++;
             timer = System.nanoTime();
 
@@ -150,12 +156,16 @@ public class Vectoid {
     public static void newRound() {
         if (GamePanel.roundStart == false) {
             GamePanel.roundStart = true;
-            maxHealth =  (int) (550*(Math.pow(1.2, GamePanel.round)));
-
-            System.out.println(maxHealth);
+            maxHealth = (int) (550 * (Math.pow(1.2, GamePanel.round)));
             currentNumberOfVectoids = 0;
             countDead = 0;
             GamePanel.round++;
+            if (waveType == 4) {
+                GamePanel.interest++;
+                waveType = 0;
+            } else {
+                waveType++;
+            }
             VectorTD.frame.roundLabel.setText("Round: " + GamePanel.round);
 
             timer = System.nanoTime();
