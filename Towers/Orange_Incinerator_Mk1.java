@@ -3,9 +3,9 @@ package Towers;
 import Game.GamePanel;
 import Game.Square;
 import Game.Vectoid;
+import java.awt.Color;
 
 import java.awt.Graphics;
-import java.awt.*;
 import Game.VectorTD;
 
 public class Orange_Incinerator_Mk1 extends Tower {
@@ -47,7 +47,7 @@ public class Orange_Incinerator_Mk1 extends Tower {
 
             int tempX = centerX - (radiusIncrease) * timer;
             int tempY = centerY - (radiusIncrease) * timer;
-            g.setColor(Color.orange);
+            g.setColor(new Color(199,106,0));
             g.drawOval(tempX, tempY, radiusIncrease * 2 * timer, radiusIncrease * 2 * timer);
 
             if (timer == animationTime) {
@@ -60,7 +60,7 @@ public class Orange_Incinerator_Mk1 extends Tower {
                   
                   
                   Vectoid.listOfVectoids[j].takeDamage(damage);
-                  Vectoid.listOfVectoids[j].burn(2, 25);
+                  Vectoid.listOfVectoids[j].burn(4, 25);
                   
                   }
                   

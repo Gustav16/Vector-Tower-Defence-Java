@@ -80,6 +80,9 @@ public class Tower {
         for (int i = 0; i < Orange_Incinerator_Mk1.count; i++) {
             Orange_Incinerator_Mk1.towers[i].draw(g);
         }
+        for (int i = 0; i < Purple_Power_Mk2.count; i++) {
+            Purple_Power_Mk2.towers[i].draw(g);
+        }
 
     }
 
@@ -100,6 +103,11 @@ public class Tower {
 
         }
 
+        for (int i = 0; i < Purple_Power_Mk2.count; i++) {
+            Purple_Power_Mk2.towers[i].shoot(g);
+
+        }
+
     }
 
     public static final void selectAllTowers() {
@@ -116,6 +124,10 @@ public class Tower {
 
         for (int i = 0; i < Orange_Incinerator_Mk1.count; i++) {
             Orange_Incinerator_Mk1.towers[i].select();
+ 
+         }
+         for (int i = 0; i < Purple_Power_Mk2.count; i++) {
+            Purple_Power_Mk2.towers[i].select();
  
          }
 

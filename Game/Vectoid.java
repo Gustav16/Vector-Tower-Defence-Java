@@ -5,8 +5,6 @@ import java.awt.Color;
 
 public class Vectoid {
 
-
-
     public static Vectoid listOfVectoids[] = new Vectoid[10];
     public static int radius = 50;
 
@@ -18,12 +16,10 @@ public class Vectoid {
     int slowTime = 0;
     float slowSpeed = 0;
     int currentHealth;
-    public static int maxHealth = 1000;
+    public static int maxHealth = 550;
 
-    
     public int x = Square.vectoidRoute[Math.round(distance)][0];
     public int y = Square.vectoidRoute[Math.round(distance)][1];
-    public int degrees = 0;
 
     float speed = 1;
     Color bodyColor = new Color(255, 0, 0);
@@ -34,50 +30,42 @@ public class Vectoid {
     int burnDamage = 0;
     int burnTicks = 0;
 
-
-  
-
-
-
-
     public void draw(Graphics g) {
 
-        if (burnTimeRemaining != 0){
-            
-            g.setColor(Color.orange);
+        if (burnTimeRemaining != 0) {
+
             burnTicks++;
-            if (burnTicks==100){
+            if (burnTicks == 100) {
                 burnTimeRemaining--;
-            
                 takeDamage(burnDamage);
-                burnTicks=0;
+                burnTicks = 0;
+            }
+
+            if (burnTimeRemaining == 0) {
+                bodyColor = Color.red;
 
             }
-        } else {
-            g.setColor(bodyColor);
+        }
+
+        if (maxHealth != currentHealth) {
+       
+            g.setColor(Color.green);
+            int healthBarWidth =Math.round((currentHealth*40)/maxHealth);
+
+            g.fillRect(2+x, y, healthBarWidth , 5);
 
         }
-        
-    
-        
-        
-        
-        
+
         x = Square.vectoidRoute[Math.round(distance)][0];
         y = Square.vectoidRoute[Math.round(distance)][1];
-        //g2d.rotate(Math.toRadians(degrees));
-        degrees++;
-        
-        //g.translate(x,y);
-        int[] pentagonX = {10 + 2 + x, 4 + 2 + x, 20 + 2 + x, 36 + 2 + x, 30 + 2 + x};
-        int[] pentagonY = {40 + y, 21 + y, 9 + y, 21 + y, 40 + y};
-        
-        
-   
-        //g.fillOval(x, y, radius, radius);
-        g.fillPolygon( pentagonX, pentagonY, 5 );
+
+        int[] pentagonX = { 10 + 2 + x, 4 + 2 + x, 20 + 2 + x, 36 + 2 + x, 30 + 2 + x };
+        int[] pentagonY = { 40 + y, 21 + y, 9 + y, 21 + y, 40 + y };
+        g.setColor(bodyColor);
+        // g.fillOval(x, y, radius, radius);
+        g.fillPolygon(pentagonX, pentagonY, 5);
         g.setColor(Color.black);
-        g.drawPolygon( pentagonX, pentagonY, 5 );
+        g.drawPolygon(pentagonX, pentagonY, 5);
 
     }
 
@@ -103,12 +91,14 @@ public class Vectoid {
     public void takeDamage(int damage) {
         currentHealth -= damage;
 
-        System.out.println(currentHealth);
-        if (currentHealth <= 0 && dead==false) {
+      
+        if (currentHealth <= 0 && dead == false) {
             dead = true;
             GamePanel.money += 10;
             countDead++;
-            
+            burnTimeRemaining = 0;
+            burnTicks = 0;
+
             VectorTD.frame.moneyLabel.setText("Money: " + GamePanel.money + "$");
             if (countDead == maxNumberOfVectoids) {
                 GamePanel.roundStart = false;
@@ -118,12 +108,10 @@ public class Vectoid {
         }
     }
 
-    public void burn(int seconds, int dps){
+    public void burn(int seconds, int dps) {
         burnTimeRemaining = seconds;
         burnDamage = dps;
-
-
-
+        bodyColor = new Color(199, 106, 0);
 
     }
 
@@ -162,6 +150,9 @@ public class Vectoid {
     public static void newRound() {
         if (GamePanel.roundStart == false) {
             GamePanel.roundStart = true;
+            maxHealth =  (int) (550*(Math.pow(1.2, GamePanel.round)));
+
+            System.out.println(maxHealth);
             currentNumberOfVectoids = 0;
             countDead = 0;
             GamePanel.round++;

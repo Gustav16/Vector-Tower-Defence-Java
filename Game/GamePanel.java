@@ -6,6 +6,7 @@ import javax.swing.*;
 
 import Towers.Green_Laser_Mk1;
 import Towers.Purple_Power_Mk1;
+import Towers.Purple_Power_Mk2;
 import Towers.Orange_Incinerator_Mk1;
 import Towers.Tower;
 import java.awt.Graphics;
@@ -87,6 +88,10 @@ public class GamePanel extends JPanel implements Runnable, MouseMotionListener, 
         }else if (followMouseImage == "Images/Orange_Incinerator_Mk1.png") {
 
             Orange_Incinerator_Mk1.buy(x, y);
+
+        } else if (followMouseImage == "Images/Purple_Power_Mk2.png") {
+
+            Purple_Power_Mk2.buy(x, y);
 
         }
 

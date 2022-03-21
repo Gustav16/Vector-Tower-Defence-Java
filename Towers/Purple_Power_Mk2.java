@@ -8,32 +8,26 @@ import Game.VectorTD;
 
 import java.awt.Graphics;
 
-
 import java.awt.Color;
 
-public class Purple_Power_Mk1 extends Tower{
+public class Purple_Power_Mk2 extends Tower {
 
-
-    public static Purple_Power_Mk1 towers[] = new Purple_Power_Mk1[100];
-    public static int price = 40;
+    public static Purple_Power_Mk2 towers[] = new Purple_Power_Mk2[100];
+    public static int price = 120;
     public static int count = 0;
 
     int timer = 0;
     int attackspeed = 100;
     boolean shooting = false;
 
-
-    public Purple_Power_Mk1(int squareX, int squareY) {
+    public Purple_Power_Mk2(int squareX, int squareY) {
         super(squareX, squareY);
-        imagePath = "Images/Purple_Power_Mk1.png";
-        range = 250;
-        
-        damage = 35;
-  
+        imagePath = "Images/Purple_Power_Mk2.png";
+        range = 300;
+
+        damage = 350;
 
     }
-
-
 
     public void shoot(Graphics g) {
 
@@ -41,7 +35,9 @@ public class Purple_Power_Mk1 extends Tower{
             if (Vectoid.listOfVectoids[target].dead == false) {
                 timer++;
                 g.setColor(new Color(255, 0, 220));
-                g.drawLine(centerX, centerY, Vectoid.listOfVectoids[target].x + Vectoid.radius / 2,
+                g.drawLine(centerX-7, centerY, Vectoid.listOfVectoids[target].x + Vectoid.radius / 2,
+                        Vectoid.listOfVectoids[target].y + Vectoid.radius / 2);
+                g.drawLine(centerX+7, centerY, Vectoid.listOfVectoids[target].x + Vectoid.radius / 2,
                         Vectoid.listOfVectoids[target].y + Vectoid.radius / 2);
 
                 if (timer == 10) {
@@ -80,23 +76,18 @@ public class Purple_Power_Mk1 extends Tower{
 
     }
 
-
     public static void buy(int x, int y) {
 
-        
+        if (x < 15 && y < 15 && x >= 0 && y >= 0 && Square.grid[x][y].isTowerPlacebel == true
+                && GamePanel.money >= price) {
 
-        if (x < 15 && y < 15 && x >= 0 && y >= 0 && Square.grid[x][y].isTowerPlacebel == true && GamePanel.money >= price) {
-
-           
             GamePanel.money -= price;
             VectorTD.frame.moneyLabel.setText("Money: " + GamePanel.money + "$");
-            towers[count] = new Purple_Power_Mk1(x, y);
+            towers[count] = new Purple_Power_Mk2(x, y);
             GamePanel.followMouseImage = "non";
             Square.grid[x][y].isTowerPlacebel = false;
             GamePanel.selectTower = false;
             count++;
-     
-      
 
         }
 
