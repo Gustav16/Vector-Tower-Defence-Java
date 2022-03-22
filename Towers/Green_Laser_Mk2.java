@@ -16,6 +16,8 @@ public class Green_Laser_Mk2 extends Tower{
     public static int price = 10;
     public static int count = 0;
 
+    public int bounceTarget;
+
 
     public Green_Laser_Mk2(int squareX, int squareY) {
         super(squareX, squareY);
@@ -34,8 +36,17 @@ public class Green_Laser_Mk2 extends Tower{
                     Vectoid.listOfVectoids[target].x + Vectoid.radius / 2,
                     Vectoid.listOfVectoids[target].y + Vectoid.radius / 2);
 
+                    pickBounceTarget();
+
+                    if (Vectoid.listOfVectoids[bounceTarget].dead == false && inRangeVectoid(bounceTarget) == true) {
+
             
-            
+
+                        g.setColor(Color.green);
+                        g.drawLine(Vectoid.listOfVectoids[target].x + Vectoid.radius / 2, Vectoid.listOfVectoids[target].y + Vectoid.radius / 2,Vectoid.listOfVectoids[bounceTarget].x + Vectoid.radius / 2 , Vectoid.listOfVectoids[bounceTarget].y + Vectoid.radius / 2);
+                        Vectoid.listOfVectoids[bounceTarget].takeDamage(damage);
+                    }
+
             Vectoid.listOfVectoids[target].takeDamage(damage);
 
 
@@ -54,24 +65,37 @@ public class Green_Laser_Mk2 extends Tower{
         }
     }
 
-    private int pickBounceTarget(){
+    private void pickBounceTarget(){
 
         for (int j = 0; j < 10; j++) {
+     
+      
+            if (Vectoid.listOfVectoids[j].dead == false && inRangeVectoid(j)==true && j!=target) {
 
+                bounceTarget = j;
 
-            int a = Vectoid.listOfVectoids[j].x - Vectoid.listOfVectoids[target].x ;
-            var b = Vectoid.listOfVectoids[j].y - Vectoid.listOfVectoids[target].y ;
-
-            var c = Math.sqrt(a * a + b * b);
-
-            if (Vectoid.listOfVectoids[j].dead == false && c <= 30) {
-
-                return(j);
-            
+                
+                break;
             }
         }
+    }
 
-      //return(1);   
+    boolean inRangeVectoid(int secondTarget) {
+
+        int a = Vectoid.listOfVectoids[secondTarget].x  - Vectoid.listOfVectoids[target].x ;
+        var b = Vectoid.listOfVectoids[secondTarget].y  - Vectoid.listOfVectoids[target].y ;
+
+        var c = Math.sqrt(a * a + b * b);
+
+        
+
+        if (c <= 600 && c!=0) {
+
+            return (true);
+        } else {
+            return (false);
+        }
+
     }
 
 

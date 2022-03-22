@@ -45,7 +45,6 @@ public class Vectoid {
                 burnTicks = 0;
             }
 
-       
         }
 
         if (maxHealth != currentHealth) {
@@ -141,26 +140,22 @@ public class Vectoid {
             listOfVectoids[currentNumberOfVectoids].distance = 0;
             listOfVectoids[currentNumberOfVectoids].type = typeList[waveType];
 
-            if (listOfVectoids[currentNumberOfVectoids].type=="grass"){
+            if (listOfVectoids[currentNumberOfVectoids].type == "grass") {
                 listOfVectoids[currentNumberOfVectoids].bodyColor = new Color(0, 255, 33);
 
-
-            } else if (listOfVectoids[currentNumberOfVectoids].type=="fire"){
+            } else if (listOfVectoids[currentNumberOfVectoids].type == "fire") {
                 listOfVectoids[currentNumberOfVectoids].bodyColor = new Color(255, 136, 0);
 
-            } else if (listOfVectoids[currentNumberOfVectoids].type=="ice"){
+            } else if (listOfVectoids[currentNumberOfVectoids].type == "ice") {
                 listOfVectoids[currentNumberOfVectoids].bodyColor = new Color(49, 185, 230);
 
-            } else if (listOfVectoids[currentNumberOfVectoids].type=="void") {
+            } else if (listOfVectoids[currentNumberOfVectoids].type == "void") {
                 listOfVectoids[currentNumberOfVectoids].bodyColor = new Color(255, 0, 220);
 
-            } else if (listOfVectoids[currentNumberOfVectoids].type=="netural"){
+            } else if (listOfVectoids[currentNumberOfVectoids].type == "netural") {
                 listOfVectoids[currentNumberOfVectoids].bodyColor = new Color(155, 163, 162);
 
             }
-
-            
-            
 
             currentNumberOfVectoids++;
             timer = System.nanoTime();
@@ -185,6 +180,8 @@ public class Vectoid {
             }
 
             VectorTD.frame.roundLabel.setText("Round: " + GamePanel.round);
+            GamePanel.money = GamePanel.money + GamePanel.money * GamePanel.interest / 100;
+            VectorTD.frame.moneyLabel.setText("Money: " + GamePanel.money + "$");
 
             timer = System.nanoTime();
         }

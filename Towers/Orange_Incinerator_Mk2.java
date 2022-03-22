@@ -8,22 +8,22 @@ import java.awt.Color;
 import java.awt.Graphics;
 import Game.VectorTD;
 
-public class Orange_Incinerator_Mk1 extends Tower {
+public class Orange_Incinerator_Mk2 extends Tower {
 
-    public static Orange_Incinerator_Mk1 towers[] = new Orange_Incinerator_Mk1[100];
-    public static int price = 10;
+    public static Orange_Incinerator_Mk2 towers[] = new Orange_Incinerator_Mk2[100];
+    public static int price = 275;
     public static int count = 0;
 
     int timer = 0;
     int animationTime = 50;
-    int attackspeed = 200;
+    int attackspeed = 150;
     boolean shooting = false;
 
-    public Orange_Incinerator_Mk1(int squareX, int squareY) {
+    public Orange_Incinerator_Mk2(int squareX, int squareY) {
         super(squareX, squareY);
-        imagePath = "Images/Orange_Incinerator_Mk1.png";
-        range = 100;
-        damage = 50;
+        imagePath = "Images/Orange_Incinerator_Mk2.png";
+        range = 175;
+        damage = 250;
 
     }
 
@@ -47,27 +47,24 @@ public class Orange_Incinerator_Mk1 extends Tower {
 
             int tempX = centerX - (radiusIncrease) * timer;
             int tempY = centerY - (radiusIncrease) * timer;
-            g.setColor(new Color(199,106,0));
+            g.setColor(new Color(199, 106, 0));
             g.drawOval(tempX, tempY, radiusIncrease * 2 * timer, radiusIncrease * 2 * timer);
 
             if (timer == animationTime) {
 
-                
-                  for (int j = 0; j < 10; j++) {
-                  
-                  if (Vectoid.listOfVectoids[j].dead == false && inRange(j) == true)
-                  {
-                  
-                  
-                  Vectoid.listOfVectoids[j].takeDamage(damage);
-                  if (Vectoid.listOfVectoids[j].dead == false) {
-                    Vectoid.listOfVectoids[j].burn(4, 25);
+                for (int j = 0; j < 10; j++) {
+
+                    if (Vectoid.listOfVectoids[j].dead == false && inRange(j) == true) {
+
+                        Vectoid.listOfVectoids[j].takeDamage(damage);
+                        if (Vectoid.listOfVectoids[j].dead == false) {
+                            Vectoid.listOfVectoids[j].burn(6, 100);
+                        }
+
+                    }
+
                 }
-                  
-                  }
-                  
-                  }
-                 
+
                 timer = 0;
                 shooting = false;
             }
@@ -94,7 +91,7 @@ public class Orange_Incinerator_Mk1 extends Tower {
 
             GamePanel.money -= price;
             VectorTD.frame.moneyLabel.setText("Money: " + GamePanel.money + "$");
-            towers[count] = new Orange_Incinerator_Mk1(x, y);
+            towers[count] = new Orange_Incinerator_Mk2(x, y);
             GamePanel.followMouseImage = "non";
             Square.grid[x][y].isTowerPlacebel = false;
             GamePanel.selectTower = false;

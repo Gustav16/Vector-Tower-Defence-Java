@@ -13,7 +13,7 @@ import Game.VectorTD;
 public class Green_Laser_Mk1 extends Tower{
 
     public static Green_Laser_Mk1 towers[] = new Green_Laser_Mk1[100];
-    public static int price = 10;
+    public static int price = 250;
     public static int count = 0;
 
 

@@ -5,9 +5,11 @@ import java.awt.*;
 import javax.swing.*;
 
 import Towers.Green_Laser_Mk1;
+import Towers.Green_Laser_Mk2;
 import Towers.Purple_Power_Mk1;
 import Towers.Purple_Power_Mk2;
 import Towers.Orange_Incinerator_Mk1;
+import Towers.Orange_Incinerator_Mk2;
 import Towers.Tower;
 import java.awt.Graphics;
 
@@ -53,10 +55,10 @@ public class GamePanel extends JPanel implements Runnable, MouseMotionListener, 
 
         Square.drawGrid(g);
 
-
         Tower.drawAllTowers(g);
-        Tower.shootAllTowers(g);
         Vectoid.drawVectoids(g);
+        Tower.shootAllTowers(g);
+        
         drawMouseTower(g);
 
         Toolkit.getDefaultToolkit().sync();
@@ -85,18 +87,22 @@ public class GamePanel extends JPanel implements Runnable, MouseMotionListener, 
 
             Purple_Power_Mk1.buy(x, y);
 
-        }else if (followMouseImage == "Images/Orange_Incinerator_Mk1.png") {
+        } else if (followMouseImage == "Images/Orange_Incinerator_Mk1.png") {
 
             Orange_Incinerator_Mk1.buy(x, y);
+
+        } else if (followMouseImage == "Images/Green_Laser_Mk2.png") {
+            Green_Laser_Mk2.buy(x, y);
 
         } else if (followMouseImage == "Images/Purple_Power_Mk2.png") {
 
             Purple_Power_Mk2.buy(x, y);
 
+        } else if (followMouseImage == "Images/Orange_Incinerator_Mk2.png") {
+
+            Orange_Incinerator_Mk2.buy(x, y);
+
         }
-
-
-
     }
 
     public void mouseMoved(MouseEvent e) {

@@ -23,6 +23,7 @@ public class GameFrame extends JFrame {
     JPanel topMenu;
     JPanel screen;
     JPanel towerMenu;
+    JPanel buttonMenu;
 
     JButton Green_Laser_Mk1;
     JButton Purple_Power_Mk1;
@@ -32,6 +33,13 @@ public class GameFrame extends JFrame {
     JButton Purple_Power_Mk2;
     JButton Orange_Incinerator_Mk2;
     JButton Blue_Rays_Mk2;
+
+    final JLabel currentVectoidHp = new JLabel("Hp 1300", SwingConstants.CENTER);
+    final JLabel currentWeakness = new JLabel("Weak agianst ice", SwingConstants.CENTER);
+    final JLabel currentStrength = new JLabel("Strong agianst fire", SwingConstants.CENTER);
+    final JLabel nextVectoidHp = new JLabel("Hp 12200", SwingConstants.CENTER);
+    final JLabel nextWeakness = new JLabel("Weak agianst ice", SwingConstants.CENTER);
+    final JLabel nextStrength = new JLabel("Strong agianst fire", SwingConstants.CENTER);
 
     GameFrame() {
 
@@ -44,6 +52,7 @@ public class GameFrame extends JFrame {
         screen.add(new GamePanel(), BorderLayout.CENTER);
         // adding side menu
         addSideMenu();
+        addButtonMenu();
 
         this.setContentPane(screen);
 
@@ -64,43 +73,22 @@ public class GameFrame extends JFrame {
 
     }
 
-    void addSideMenu() {
-        // JPanel sideMenu = new JPanel();
-        // sideMenu.setLayout(new BoxLayout(sideMenu, BoxLayout.Y_AXIS));
-        // sideMenu.CENTER_ALIGNMENT;
-        // sideMenu.setBackground(Color.BLACK);
+    void addButtonMenu() {
 
-        towerMenu = new JPanel();
-        towerMenu.setLayout(new GridLayout(2, 4, 10, 10));
-        towerMenu.setBackground(Color.BLACK);
+        buttonMenu = new JPanel();
+        buttonMenu.setLayout(new GridLayout(2, 3, 10, 10));
+        buttonMenu.setBackground(Color.BLACK);
 
-        addtowerBottun(Green_Laser_Mk1, "Images/Green_Laser_Mk1.png");
-        addtowerBottun(Purple_Power_Mk1, "Images/Purple_Power_Mk1.png");
-        addtowerBottun(Orange_Incinerator_Mk1, "Images/Orange_Incinerator_Mk1.png");
-        addtowerBottun(Blue_Rays_Mk1, "Images/Blue_Rays_Mk1.png");
+        addLabel(currentVectoidHp);
+        addLabel(currentWeakness);
+        addLabel(currentStrength);
+      
+        addLabel(nextVectoidHp);
+        addLabel(nextWeakness);
+        addLabel(nextStrength);
 
-        addtowerBottun(Green_Laser_Mk2, "Images/Green_Laser_Mk2.png");
-        addtowerBottun(Purple_Power_Mk2, "Images/Purple_Power_Mk2.png");
-        addtowerBottun(Orange_Incinerator_Mk2, "Images/Orange_Incinerator_Mk2.png");
-        addtowerBottun(Blue_Rays_Mk2, "Images/Blue_Rays_Mk2.png");
+        screen.add(buttonMenu, BorderLayout.NORTH);
 
-        /*
-         * final JLabel towerMenuName = new JLabel("Towers");
-         * towerMenuName.setForeground(Color.white);
-         * towerMenuName.setBackground(new Color(4, 23, 22));
-         * towerMenuName.setFont(new Font("Verdana", Font.PLAIN, 25));
-         * 
-         * final JLabel towerInformation = new JLabel("Towers");
-         * towerInformation.setForeground(Color.white);
-         * towerInformation.setBackground(new Color(4, 23, 22));
-         * towerInformation.setFont(new Font("Verdana", Font.PLAIN, 25));
-         * 
-         * sideMenu.add(towerMenuName);
-         * sideMenu.add(towerMenu);
-         * sideMenu.add(towerInformation);
-         */
-        screen.add(towerMenu, BorderLayout.EAST);
-        // screen.add(towerMenu, BorderLayout.EAST);
     }
 
     void addTopMenu() {
@@ -130,7 +118,59 @@ public class GameFrame extends JFrame {
         addLabel(interestLabel);
         topMenu.add(autoStart);
 
-        screen.add(topMenu, BorderLayout.NORTH);
+        screen.add(topMenu, BorderLayout.SOUTH);
+    }
+
+
+
+
+
+    void addSideMenu() {
+        JPanel sideMenu = new JPanel();
+        sideMenu.setLayout(new BoxLayout(sideMenu, BoxLayout.Y_AXIS));
+
+        sideMenu.setBackground(Color.BLACK);
+
+        towerMenu = new JPanel();
+        towerMenu.setLayout(new GridLayout(2, 4, 10, 10));
+        towerMenu.setBackground(Color.BLACK);
+
+        addtowerBottun(Green_Laser_Mk1, "Images/Green_Laser_Mk1.png");
+        addtowerBottun(Purple_Power_Mk1, "Images/Purple_Power_Mk1.png");
+        addtowerBottun(Orange_Incinerator_Mk1, "Images/Orange_Incinerator_Mk1.png");
+        addtowerBottun(Blue_Rays_Mk1, "Images/Blue_Rays_Mk1.png");
+
+        addtowerBottun(Green_Laser_Mk2, "Images/Green_Laser_Mk2.png");
+        addtowerBottun(Purple_Power_Mk2, "Images/Purple_Power_Mk2.png");
+        addtowerBottun(Orange_Incinerator_Mk2, "Images/Orange_Incinerator_Mk2.png");
+        addtowerBottun(Blue_Rays_Mk2, "Images/Blue_Rays_Mk2.png");
+
+        /*
+         * final JLabel towerMenuName = new JLabel("Towers");
+         * towerMenuName.setForeground(Color.white);
+         * towerMenuName.setBackground(new Color(4, 23, 22));
+         * towerMenuName.setFont(new Font("Verdana", Font.PLAIN, 25));
+         * 
+         * final JLabel towerInformation = new JLabel("Towers");
+         * towerInformation.setForeground(Color.white);
+         * towerInformation.setBackground(new Color(4, 23, 22));
+         * towerInformation.setFont(new Font("Verdana", Font.PLAIN, 25));
+         * 
+         * sideMenu.add(towerMenuName);
+         * 
+         * sideMenu.add(towerInformation);
+         * 
+         * 
+         */
+
+        sideMenu.add(towerMenu);
+
+        JLabel test = new JLabel("this is test", SwingConstants.CENTER);
+        sideMenu.add(test);
+
+        screen.add(sideMenu, BorderLayout.EAST);
+
+        // screen.add(towerMenu, BorderLayout.EAST);
     }
 
     void addLabel(JLabel jLabel) {
