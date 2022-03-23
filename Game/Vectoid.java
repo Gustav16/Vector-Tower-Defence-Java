@@ -76,14 +76,11 @@ public class Vectoid {
 
     private void outOfMap() {
         if (distance >= Square.vectoidRoute.length) {
-            dead = true;
-            GamePanel.lives -= 1;
-            countDead++;
-            VectorTD.frame.livesLabel.setText("Lives: " + GamePanel.lives);
-            if (countDead == maxNumberOfVectoids) {
-                GamePanel.roundStart = false;
 
-            }
+            GamePanel.lives -= 1;
+            distance = 0;
+
+            VectorTD.frame.livesLabel.setText("Lives: " + GamePanel.lives);
 
         }
     }
@@ -158,7 +155,7 @@ public class Vectoid {
                 VectorTD.frame.currentWeakness.setText("Hitpoints: " + maxHealth);
                 VectorTD.frame.currentStrength.setText("Hitpoints: " + maxHealth);
 
-                VectorTD.frame.nextVectoidHp.setText("Hitpoints: " + maxHealth*1.2);
+                VectorTD.frame.nextVectoidHp.setText("Hitpoints: " + maxHealth * 1.2);
                 VectorTD.frame.nextWeakness.setText("Hitpoints: " + maxHealth);
                 VectorTD.frame.nextStrength.setText("Hitpoints: " + maxHealth);
             }

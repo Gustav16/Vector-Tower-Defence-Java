@@ -1,16 +1,15 @@
 package Towers;
 
+//Her importer vi de foskellige klasser jeg har lavet så vi kan tage brug af varibler og function 
 import Game.GamePanel;
 import Game.Square;
 import Game.Vectoid;
 
-
+//Importer Graphics og awt til at lave graphic
 import java.awt.Graphics;
 import java.awt.*;
 
 public class Tower {
-
-    
     String imagePath;
     int target;
     int damage;
@@ -28,7 +27,6 @@ public class Tower {
     }
 
     public void draw(Graphics g) {
-
         g.drawImage(Toolkit.getDefaultToolkit().getImage(imagePath), x, y, null);
         if (showRange == true) {
             g.setColor(Color.white);
@@ -36,28 +34,24 @@ public class Tower {
         }
     }
 
-    
-
+    //Vi bruger pythagoras til at finde afstanden mellem centrum af tårnet og centrum af Vectoiden
     boolean inRange(int target) {
-
+        //Først udregner vi a og b
         int a = centerX - (Vectoid.listOfVectoids[target].x + Vectoid.radius / 2);
         var b = centerY - (Vectoid.listOfVectoids[target].y + Vectoid.radius / 2);
 
+        //Nu udregner vi c som er distancen mellem tårnet og Vectoiden
         var c = Math.sqrt(a * a + b * b);
 
+        //Hvis c er mindre eller det samme som rækkeviden af tårnet må Vectoiden være inde for rækkeviden
         if (c <= this.range) {
 
+            //Hvis Vectoiden er inde for rækkeviden returnere vi sandt ellers retunere vi falsk
             return (true);
         } else {
             return (false);
         }
-
     }
-
-
- 
-
-
 
     public void select() {
         if (GamePanel.mousePressedX >= x && GamePanel.mousePressedX < x + Square.width && GamePanel.mousePressedY >= y
@@ -69,7 +63,6 @@ public class Tower {
             Square.grid[squareX][squareY].strokeColor = Color.black;
             this.showRange = false;
         }
-
     }
 
     public static final void drawAllTowers(Graphics g) {

@@ -4,10 +4,14 @@ import java.awt.Color;
 
 public class Square extends Rectangle {
 
+  //Hvor mange kolloner og rækker af firkanter
   static int rows = 15;
   static int collums = 15;
 
+  //Array indeholder alle firkanterne
   public static Square grid[][] = new Square[rows][collums];
+
+  //Den specifikke bane
   public static int[][] makeMap = { { 0, 0 }, { 5, 0 }, { 5, 5 }, { 3, 5 }, { 3, 3 }, { 0, 3 }, { 0, 10 }, { 10, 10 },
       { 10, 5 }, { 14, 5 } };
 
@@ -19,6 +23,7 @@ public class Square extends Rectangle {
   public Color strokeColor = new Color(0, 0, 0);
   public boolean isTowerPlacebel = true;
 
+  //den rute som Vectoids følger
   public static int[][] vectoidRoute;
 
   Square(int x, int y) {
@@ -26,6 +31,7 @@ public class Square extends Rectangle {
     this.y = y;
   }
 
+  //tegner firkanten
   private void draw(Graphics g) {
     g.setColor(strokeColor);
     g.fillRect(x, y, width, width);
@@ -33,6 +39,7 @@ public class Square extends Rectangle {
     g.fillRect(x + strokeWeigth, y + strokeWeigth, width - strokeWeigth * 2, width - strokeWeigth * 2);
   }
 
+  //fylder arralisten grid op med classen Square
   public static void makeGrid() {
     for (int i = 0; i < collums; i++) {
       for (int j = 0; j < rows; j++) {
@@ -45,6 +52,7 @@ public class Square extends Rectangle {
     makeVectoidRoute();
   }
 
+  //Tegner alle firkanterne
   public static void drawGrid(Graphics g) {
     for (int i = 0; i < collums; i++) {
       for (int j = 0; j < rows; j++) {
@@ -53,6 +61,7 @@ public class Square extends Rectangle {
     }
   }
 
+  //Gør så alle firkanter mellem de 2 punkter man har skrevet ind i makeMap bliver til banen.
   private static void makeMap() {
 
     for (int i = 1; i < makeMap.length; i++) {
@@ -91,6 +100,8 @@ public class Square extends Rectangle {
     }
   }
 
+
+   //Regner ud hvor lang ruten som Vectoids følger er
   private static void calculateRouteLength() {
     int length = 0;
 
@@ -105,6 +116,8 @@ public class Square extends Rectangle {
     vectoidRoute = new int[length + 1][2];
   }
 
+
+  //Laver ruten som Vectoids følger
   private static void makeVectoidRoute() {
 
     int number = 0;
