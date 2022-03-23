@@ -154,7 +154,13 @@ public class Vectoid {
 
             } else if (listOfVectoids[currentNumberOfVectoids].type == "netural") {
                 listOfVectoids[currentNumberOfVectoids].bodyColor = new Color(155, 163, 162);
+                VectorTD.frame.currentVectoidHp.setText("Hitpoints: " + maxHealth);
+                VectorTD.frame.currentWeakness.setText("Hitpoints: " + maxHealth);
+                VectorTD.frame.currentStrength.setText("Hitpoints: " + maxHealth);
 
+                VectorTD.frame.nextVectoidHp.setText("Hitpoints: " + maxHealth*1.2);
+                VectorTD.frame.nextWeakness.setText("Hitpoints: " + maxHealth);
+                VectorTD.frame.nextStrength.setText("Hitpoints: " + maxHealth);
             }
 
             currentNumberOfVectoids++;

@@ -34,12 +34,16 @@ public class GameFrame extends JFrame {
     JButton Orange_Incinerator_Mk2;
     JButton Blue_Rays_Mk2;
 
-    final JLabel currentVectoidHp = new JLabel("Hp 1300", SwingConstants.CENTER);
-    final JLabel currentWeakness = new JLabel("Weak agianst ice", SwingConstants.CENTER);
+    final JLabel currentVectoid = new JLabel("Current Vectoid: ", SwingConstants.CENTER);
+
+    final JLabel currentVectoidHp = new JLabel("Hp 550", SwingConstants.CENTER);
+    final JLabel currentWeakness = new JLabel("Weak agianst grass", SwingConstants.CENTER);
     final JLabel currentStrength = new JLabel("Strong agianst fire", SwingConstants.CENTER);
-    final JLabel nextVectoidHp = new JLabel("Hp 12200", SwingConstants.CENTER);
+
+    final JLabel nextVectoid = new JLabel("Next Vectoid: ", SwingConstants.CENTER);
+    final JLabel nextVectoidHp = new JLabel("Hp 660", SwingConstants.CENTER);
     final JLabel nextWeakness = new JLabel("Weak agianst ice", SwingConstants.CENTER);
-    final JLabel nextStrength = new JLabel("Strong agianst fire", SwingConstants.CENTER);
+    final JLabel nextStrength = new JLabel("Strong agianst grass", SwingConstants.CENTER);
 
     GameFrame() {
 
@@ -47,11 +51,12 @@ public class GameFrame extends JFrame {
         screen.setLayout(new BorderLayout());
 
         // adding top menu
-        addTopMenu();
+         addTopMenu();
         // adding game
         screen.add(new GamePanel(), BorderLayout.CENTER);
         // adding side menu
         addSideMenu();
+        
         addButtonMenu();
 
         this.setContentPane(screen);
@@ -76,18 +81,22 @@ public class GameFrame extends JFrame {
     void addButtonMenu() {
 
         buttonMenu = new JPanel();
-        buttonMenu.setLayout(new GridLayout(2, 3, 10, 10));
+        buttonMenu.setLayout(new GridLayout(2, 4, 10, 10));
         buttonMenu.setBackground(Color.BLACK);
 
-        addLabel(currentVectoidHp);
-        addLabel(currentWeakness);
-        addLabel(currentStrength);
-      
-        addLabel(nextVectoidHp);
-        addLabel(nextWeakness);
-        addLabel(nextStrength);
 
-        screen.add(buttonMenu, BorderLayout.NORTH);
+        addbottunLabel(currentVectoid);
+        addbottunLabel(currentVectoidHp);
+        addbottunLabel(currentWeakness);
+        addbottunLabel(currentStrength);
+
+        addbottunLabel(nextVectoid);
+        addbottunLabel(nextVectoidHp);
+        addbottunLabel(nextWeakness);
+        addbottunLabel(nextStrength);
+
+        screen.add(buttonMenu, BorderLayout.SOUTH);
+   
 
     }
 
@@ -118,7 +127,7 @@ public class GameFrame extends JFrame {
         addLabel(interestLabel);
         topMenu.add(autoStart);
 
-        screen.add(topMenu, BorderLayout.SOUTH);
+        screen.add(topMenu, BorderLayout.NORTH);
     }
 
 
@@ -179,6 +188,16 @@ public class GameFrame extends JFrame {
         jLabel.setBackground(new Color(4, 23, 22));
         topMenu.add(jLabel);
     }
+
+    void addbottunLabel(JLabel jLabel){
+        jLabel.setOpaque(true);
+        jLabel.setForeground(Color.white);
+        jLabel.setBackground(new Color(4, 23, 22));
+        buttonMenu.add(jLabel);
+
+    }
+
+
 
     void addtowerBottun(JButton name, String img) {
 
