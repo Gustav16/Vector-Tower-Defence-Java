@@ -18,6 +18,7 @@ public class Orange_Incinerator_Mk2 extends Tower {
     int animationTime = 50;
     int attackspeed = 150;
     boolean shooting = false;
+    int burnDamage = 100;
 
     public Orange_Incinerator_Mk2(int squareX, int squareY) {
         super(squareX, squareY);
@@ -56,9 +57,25 @@ public class Orange_Incinerator_Mk2 extends Tower {
 
                     if (Vectoid.listOfVectoids[j].dead == false && inRange(j) == true) {
 
-                        Vectoid.listOfVectoids[j].takeDamage(damage);
+                        if (Vectoid.listOfVectoids[target].type == "grass") {
+                            Vectoid.listOfVectoids[target].takeDamage(damage * 1.5);
+                        } else if (Vectoid.listOfVectoids[target].type == "ice") {
+                            Vectoid.listOfVectoids[target].takeDamage(damage * 0.5);
+                        } else {
+                            Vectoid.listOfVectoids[target].takeDamage(damage);
+
+                        }
                         if (Vectoid.listOfVectoids[j].dead == false) {
-                            Vectoid.listOfVectoids[j].burn(6, 100);
+
+                            if (Vectoid.listOfVectoids[target].type == "grass") {
+                                Vectoid.listOfVectoids[j].burn(4, burnDamage * 1.5);
+                            } else if (Vectoid.listOfVectoids[target].type == "ice") {
+                                Vectoid.listOfVectoids[j].burn(4, burnDamage * 0.5);
+                            } else {
+                                Vectoid.listOfVectoids[j].burn(4, burnDamage);
+
+                            }
+
                         }
 
                     }

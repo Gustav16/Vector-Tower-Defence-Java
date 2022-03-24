@@ -105,12 +105,18 @@ public class Square extends Rectangle {
   private static void calculateRouteLength() {
     int length = 0;
 
+
+    //Finder distancen mellem alle vores punkter
     for (int i = 1; i < makeMap.length; i++) {
+
+
 
       length += Math.abs(grid[makeMap[i][0]][makeMap[i][1]].x - grid[makeMap[i - 1][0]][makeMap[i - 1][1]].x);
       length += Math.abs(grid[makeMap[i][0]][makeMap[i][1]].y - grid[makeMap[i - 1][0]][makeMap[i - 1][1]].y);
 
     }
+
+    //Eftersom at Vectoids skal spawne ud fra banen og gå ud fra banen bliver vi nød til at lave den lidt længere
     length += width * 2;
 
     vectoidRoute = new int[length + 1][2];
@@ -119,6 +125,8 @@ public class Square extends Rectangle {
 
   //Laver ruten som Vectoids følger
   private static void makeVectoidRoute() {
+
+    //Vectoids følger en arrayliste som består af pixels imellem vores forskellige punkter
 
     int number = 0;
     int x2 = 0;
@@ -135,6 +143,7 @@ public class Square extends Rectangle {
       int xDist = x2 - x1;
       int yDist = y2 - y1;
 
+      //Hvis vores ene punkt enten er det første eller sidste laver vi banen lidt længere
       if (i == 1) {
 
         if (xDist > 0) {
@@ -171,6 +180,7 @@ public class Square extends Rectangle {
         }
       }
 
+      //Vi tjekker om vecotids skal gå baglens eller opad
       if (xDist > 0 || yDist > 0) {
 
         for (int j = 0; j != xDist + yDist; j++) {
@@ -188,6 +198,8 @@ public class Square extends Rectangle {
         }
       } else {
 
+
+        //Ellers sætter vi kordinaterne ind til alle de pixel som er imellem vores 2 punkter
         for (int j = 0; j != Math.abs(xDist + yDist); j++) {
 
           if (yDist == 0) {
@@ -205,6 +217,7 @@ public class Square extends Rectangle {
 
     }
 
+    //Vi vil gerne have det sidste punkt med så det tilføjer vi manuelt 
     vectoidRoute[number][0] = x2;
     vectoidRoute[number][1] = y2;
 

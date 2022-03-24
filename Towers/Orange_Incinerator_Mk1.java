@@ -18,6 +18,7 @@ public class Orange_Incinerator_Mk1 extends Tower {
     int animationTime = 50;
     int attackspeed = 200;
     boolean shooting = false;
+    int burnDamage = 25;
 
     public Orange_Incinerator_Mk1(int squareX, int squareY) {
         super(squareX, squareY);
@@ -47,27 +48,40 @@ public class Orange_Incinerator_Mk1 extends Tower {
 
             int tempX = centerX - (radiusIncrease) * timer;
             int tempY = centerY - (radiusIncrease) * timer;
-            g.setColor(new Color(199,106,0));
+            g.setColor(new Color(199, 106, 0));
             g.drawOval(tempX, tempY, radiusIncrease * 2 * timer, radiusIncrease * 2 * timer);
 
             if (timer == animationTime) {
 
-                
-                  for (int j = 0; j < 10; j++) {
-                  
-                  if (Vectoid.listOfVectoids[j].dead == false && inRange(j) == true)
-                  {
-                  
-                  
-                  Vectoid.listOfVectoids[j].takeDamage(damage);
-                  if (Vectoid.listOfVectoids[j].dead == false) {
-                    Vectoid.listOfVectoids[j].burn(4, 25);
+                for (int j = 0; j < 10; j++) {
+
+                    if (Vectoid.listOfVectoids[j].dead == false && inRange(j) == true) {
+
+                        if (Vectoid.listOfVectoids[target].type == "grass") {
+                            Vectoid.listOfVectoids[target].takeDamage(damage * 1.5);
+                        } else if (Vectoid.listOfVectoids[target].type == "ice") {
+                            Vectoid.listOfVectoids[target].takeDamage(damage * 0.5);
+                        } else {
+                            Vectoid.listOfVectoids[target].takeDamage(damage);
+
+                        }
+                        if (Vectoid.listOfVectoids[j].dead == false) {
+
+                            if (Vectoid.listOfVectoids[target].type == "grass") {
+                                Vectoid.listOfVectoids[j].burn(4, burnDamage * 1.5);
+                            } else if (Vectoid.listOfVectoids[target].type == "ice") {
+                                Vectoid.listOfVectoids[j].burn(4, burnDamage * 0.5);
+                            } else {
+                                Vectoid.listOfVectoids[j].burn(4, burnDamage);
+
+                            }
+
+                        }
+
+                    }
+
                 }
-                  
-                  }
-                  
-                  }
-                 
+
                 timer = 0;
                 shooting = false;
             }

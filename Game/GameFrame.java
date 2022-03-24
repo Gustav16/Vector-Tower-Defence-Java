@@ -127,6 +127,7 @@ public class GameFrame extends JFrame {
         autoStart.setBackground(new Color(245, 28, 92));
         autoStart.setFocusPainted(false);
 
+        //Vi adder forskellige ting til top menuen
         addLabel(moneyLabel);
         addLabel(livesLabel);
         topMenu.add(roundStart);

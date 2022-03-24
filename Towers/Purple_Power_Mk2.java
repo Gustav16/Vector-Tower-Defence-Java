@@ -35,14 +35,21 @@ public class Purple_Power_Mk2 extends Tower {
             if (Vectoid.listOfVectoids[target].dead == false) {
                 timer++;
                 g.setColor(new Color(255, 0, 220));
-                g.drawLine(centerX-7, centerY, Vectoid.listOfVectoids[target].x + Vectoid.radius / 2,
+                g.drawLine(centerX - 7, centerY, Vectoid.listOfVectoids[target].x + Vectoid.radius / 2,
                         Vectoid.listOfVectoids[target].y + Vectoid.radius / 2);
-                g.drawLine(centerX+7, centerY, Vectoid.listOfVectoids[target].x + Vectoid.radius / 2,
+                g.drawLine(centerX + 7, centerY, Vectoid.listOfVectoids[target].x + Vectoid.radius / 2,
                         Vectoid.listOfVectoids[target].y + Vectoid.radius / 2);
 
                 if (timer == 10) {
                     timer = 0;
-                    Vectoid.listOfVectoids[target].takeDamage(damage);
+                    if (Vectoid.listOfVectoids[target].type == "ice") {
+                        Vectoid.listOfVectoids[target].takeDamage(damage * 1.5);
+                    } else if (Vectoid.listOfVectoids[target].type == "grass") {
+                        Vectoid.listOfVectoids[target].takeDamage(damage * 0.5);
+                    } else {
+                        Vectoid.listOfVectoids[target].takeDamage(damage);
+
+                    }
                     shooting = false;
                 }
             } else {
