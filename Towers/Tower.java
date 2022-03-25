@@ -15,6 +15,7 @@ public class Tower {
     int target;
     int damage;
     int range;
+   
     int x, y, squareX, squareY, centerX, centerY;
     boolean showRange = false;
 

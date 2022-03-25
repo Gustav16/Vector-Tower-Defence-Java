@@ -11,20 +11,20 @@ import Game.VectorTD;
 public class Orange_Incinerator_Mk1 extends Tower {
 
     public static Orange_Incinerator_Mk1 towers[] = new Orange_Incinerator_Mk1[100];
-    public static int price = 10;
+    public static int price = 200;
     public static int count = 0;
 
     int timer = 0;
     int animationTime = 50;
     int attackspeed = 200;
     boolean shooting = false;
-    int burnDamage = 25;
+    int burnDamage = 50;
 
     public Orange_Incinerator_Mk1(int squareX, int squareY) {
         super(squareX, squareY);
         imagePath = "Images/Orange_Incinerator_Mk1.png";
         range = 100;
-        damage = 50;
+        damage = 100;
 
     }
 
@@ -53,7 +53,7 @@ public class Orange_Incinerator_Mk1 extends Tower {
 
             if (timer == animationTime) {
 
-                for (int j = 0; j < 10; j++) {
+                for (int j = 0; j < Vectoid.currentNumberOfVectoids; j++) {
 
                     if (Vectoid.listOfVectoids[j].dead == false && inRange(j) == true) {
 
@@ -91,7 +91,7 @@ public class Orange_Incinerator_Mk1 extends Tower {
     }
 
     public void pickTarget() {
-        for (int j = 0; j < 10; j++) {
+        for (int j = 0; j < Vectoid.currentNumberOfVectoids; j++) {
             if (Vectoid.listOfVectoids[j].dead == false && inRange(j) == true) {
                 target = j;
                 break;

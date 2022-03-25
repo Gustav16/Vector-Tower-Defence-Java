@@ -15,16 +15,16 @@ public class Green_Laser_Mk1 extends Tower {
     //arraliste over alle tårne af denne type
     public static Green_Laser_Mk1 towers[] = new Green_Laser_Mk1[100];
 
-    public static int price = 250;
-
     //hvor mange der er 
     public static int count = 0;
+    static int  price = 100;
 
     public Green_Laser_Mk1(int squareX, int squareY) {
         super(squareX, squareY);
         imagePath = "Images/Green_Laser_Mk1.png";
         range = 200;
-        damage = 2;
+        damage = 5;
+      
 
     }
 
@@ -65,7 +65,7 @@ public class Green_Laser_Mk1 extends Tower {
     // er død
     public void pickTarget() {
         // Her har vi en for-løkke som kører arraylisten med Vectoids igennem.
-        for (int j = 0; j < 10; j++) {
+        for (int j = 0; j < Vectoid.currentNumberOfVectoids; j++) {
             // Hvis Vectoiden ikke er død og den er inde for rækkevidden har en et validt
             // mål
             if (Vectoid.listOfVectoids[j].dead == false && inRange(j) == true) {

@@ -13,7 +13,7 @@ import java.awt.Color;
 public class Purple_Power_Mk2 extends Tower {
 
     public static Purple_Power_Mk2 towers[] = new Purple_Power_Mk2[100];
-    public static int price = 120;
+    public static int price = 900;
     public static int count = 0;
 
     int timer = 0;
@@ -25,7 +25,7 @@ public class Purple_Power_Mk2 extends Tower {
         imagePath = "Images/Purple_Power_Mk2.png";
         range = 300;
 
-        damage = 350;
+        damage = 8500;
 
     }
 
@@ -73,7 +73,7 @@ public class Purple_Power_Mk2 extends Tower {
     }
 
     public void pickTarget() {
-        for (int j = 0; j < 10; j++) {
+        for (int j = 0; j < Vectoid.currentNumberOfVectoids; j++) {
             if (Vectoid.listOfVectoids[j].dead == false && inRange(j) == true) {
                 target = j;
                 break;

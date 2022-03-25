@@ -8,7 +8,7 @@ import java.awt.Color;
 public class Vectoid {
 
     //Arrayliste over alle vectoids
-    public static Vectoid listOfVectoids[] = new Vectoid[10];
+    public static Vectoid listOfVectoids[] = new Vectoid[30];
 
     public static int radius = 50;
     public static int maxHealth = 550;
@@ -17,8 +17,8 @@ public class Vectoid {
     public static String typeList[] = { "grass", "fire", "ice", "void", "netural" };
     static int waveType = -1;
 
-    static int maxNumberOfVectoids = 10;
-    static int currentNumberOfVectoids = 0;
+    static int maxNumberOfVectoids = 30;
+    public static int currentNumberOfVectoids = 0;
     static int countDead = 0;
     static long timer;
     static Color roundColor;

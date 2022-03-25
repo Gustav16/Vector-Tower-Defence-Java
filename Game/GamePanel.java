@@ -27,8 +27,8 @@ public class GamePanel extends JPanel implements Runnable, MouseMotionListener, 
     final static int FPS = 100;
     final static public long SKIP_TICKS = 1000000000 / FPS;
 
-    static public int lives = 25;
-    static public int money = 10000;
+    static public int lives = 20;
+    static public int money = 275;
     static public int round = 0;
     static public int interest = 3;
 

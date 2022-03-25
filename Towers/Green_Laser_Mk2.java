@@ -13,7 +13,7 @@ import Game.VectorTD;
 public class Green_Laser_Mk2 extends Tower{
 
     public static Green_Laser_Mk2 towers[] = new Green_Laser_Mk2[100];
-    public static int price = 10;
+    public static int price = 400;
     public static int count = 0;
 
     //Vi har et ekstra mål
@@ -24,7 +24,7 @@ public class Green_Laser_Mk2 extends Tower{
         super(squareX, squareY);
         imagePath = "Images/Green_Laser_Mk2.png";
         range = 200;
-        damage = 5;
+        damage = 20;
         
     }
 
@@ -76,7 +76,7 @@ public class Green_Laser_Mk2 extends Tower{
     }
 
     public void pickTarget() {
-        for (int j = 0; j < 10; j++) {
+        for (int j = 0; j < Vectoid.currentNumberOfVectoids; j++) {
             if (Vectoid.listOfVectoids[j].dead == false && inRange(j) == true) {
                 target = j;
                 break;
@@ -88,7 +88,7 @@ public class Green_Laser_Mk2 extends Tower{
     //finder et bounceTarget
     private void pickBounceTarget(){
 
-        for (int j = 0; j < 10; j++) {
+        for (int j = 0; j < Vectoid.currentNumberOfVectoids; j++) {
             if (Vectoid.listOfVectoids[j].dead == false && inRangeVectoid(j)==true && j!=target) {
 
                 bounceTarget = j;
