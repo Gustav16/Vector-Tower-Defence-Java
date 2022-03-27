@@ -65,7 +65,7 @@ public class Orange_Incinerator_Mk1 extends Tower {
                             Vectoid.listOfVectoids[j].takeDamage(damage);
 
                         }
-/*
+
                         if (Vectoid.listOfVectoids[j].dead == false) {
 
                             if (Vectoid.listOfVectoids[j].type == "grass") {
@@ -78,7 +78,7 @@ public class Orange_Incinerator_Mk1 extends Tower {
                             }
 
                         }
-                        */
+                        
 
                     }
 

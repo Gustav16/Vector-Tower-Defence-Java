@@ -50,10 +50,6 @@ public class Green_Laser_Mk1 extends Tower {
                 Vectoid.listOfVectoids[target].takeDamage(damage);
 
             }
-
-
-
-            
             // Hvis Vectoiden enten dør eller kommer ud af rækkevidde vælger vi et nyt
         } else {
             pickTarget();

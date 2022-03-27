@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 
 public class GameFrame extends JFrame {
     //CENTER regions størrelse
-    static final int SCREEN_WIDTH = 1100;
+    static final int SCREEN_WIDTH = 1000;
     static final int SCREEN_HEIGHT = 800;
 
     //Jlabels i top menuen
@@ -40,15 +40,14 @@ public class GameFrame extends JFrame {
 
     //Alle de forskellige jLabels i bund menuen
     final JLabel currentVectoid = new JLabel("Current Vectoid: ", SwingConstants.CENTER);
-
-    final JLabel currentVectoidHp = new JLabel("Hp 550", SwingConstants.CENTER);
-    final JLabel currentWeakness = new JLabel("Weak agianst grass", SwingConstants.CENTER);
-    final JLabel currentStrength = new JLabel("Strong agianst fire", SwingConstants.CENTER);
+    final JLabel currentType = new JLabel(Vectoid.typeList[Vectoid.waveType], SwingConstants.CENTER);
+    final JLabel currentHealth = new JLabel("550 Hitpoints", SwingConstants.CENTER);
+    final JLabel currentMoney = new JLabel("4$", SwingConstants.CENTER);
 
     final JLabel nextVectoid = new JLabel("Next Vectoid: ", SwingConstants.CENTER);
-    final JLabel nextVectoidHp = new JLabel("Hp 660", SwingConstants.CENTER);
-    final JLabel nextWeakness = new JLabel("Weak agianst ice", SwingConstants.CENTER);
-    final JLabel nextStrength = new JLabel("Strong agianst grass", SwingConstants.CENTER);
+    final JLabel nextType = new JLabel(Vectoid.typeList[Vectoid.waveType+1], SwingConstants.CENTER);
+    final JLabel nextHealth = new JLabel("660 HitPoints", SwingConstants.CENTER);
+    final JLabel nextMoney = new JLabel("5$", SwingConstants.CENTER);
 
     GameFrame() {
 
@@ -92,14 +91,14 @@ public class GameFrame extends JFrame {
 
 
         addbottunLabel(currentVectoid);
-        addbottunLabel(currentVectoidHp);
-        addbottunLabel(currentWeakness);
-        addbottunLabel(currentStrength);
+        addbottunLabel(currentType);
+        addbottunLabel(currentHealth);
+        addbottunLabel(currentMoney);
 
         addbottunLabel(nextVectoid);
-        addbottunLabel(nextVectoidHp);
-        addbottunLabel(nextWeakness);
-        addbottunLabel(nextStrength);
+        addbottunLabel(nextType);
+        addbottunLabel(nextHealth);
+        addbottunLabel(nextMoney);
 
         screen.add(buttonMenu, BorderLayout.SOUTH);
    
