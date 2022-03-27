@@ -57,19 +57,20 @@ public class Orange_Incinerator_Mk1 extends Tower {
 
                     if (Vectoid.listOfVectoids[j].dead == false && inRange(j) == true) {
 
-                        if (Vectoid.listOfVectoids[target].type == "grass") {
-                            Vectoid.listOfVectoids[target].takeDamage(damage * 1.5);
-                        } else if (Vectoid.listOfVectoids[target].type == "ice") {
-                            Vectoid.listOfVectoids[target].takeDamage(damage * 0.5);
+                        if (Vectoid.listOfVectoids[j].type == "grass") {
+                            Vectoid.listOfVectoids[j].takeDamage(damage * 1.5);
+                        } else if (Vectoid.listOfVectoids[j].type == "ice") {
+                            Vectoid.listOfVectoids[j].takeDamage(damage * 0.5);
                         } else {
-                            Vectoid.listOfVectoids[target].takeDamage(damage);
+                            Vectoid.listOfVectoids[j].takeDamage(damage);
 
                         }
+/*
                         if (Vectoid.listOfVectoids[j].dead == false) {
 
-                            if (Vectoid.listOfVectoids[target].type == "grass") {
+                            if (Vectoid.listOfVectoids[j].type == "grass") {
                                 Vectoid.listOfVectoids[j].burn(4, burnDamage * 1.5);
-                            } else if (Vectoid.listOfVectoids[target].type == "ice") {
+                            } else if (Vectoid.listOfVectoids[j].type == "ice") {
                                 Vectoid.listOfVectoids[j].burn(4, burnDamage * 0.5);
                             } else {
                                 Vectoid.listOfVectoids[j].burn(4, burnDamage);
@@ -77,6 +78,7 @@ public class Orange_Incinerator_Mk1 extends Tower {
                             }
 
                         }
+                        */
 
                     }
 
