@@ -12,19 +12,18 @@ import Game.VectorTD;
 
 public class Green_Laser_Mk1 extends Tower {
 
-    //arraliste over alle tårne af denne type
+    // arraliste over alle tårne af denne type
     public static Green_Laser_Mk1 towers[] = new Green_Laser_Mk1[100];
 
-    //hvor mange der er 
+    // hvor mange der er
     public static int count = 0;
-    static int  price = 100;
+    static int price = 100;
 
     public Green_Laser_Mk1(int squareX, int squareY) {
         super(squareX, squareY);
         imagePath = "Images/Green_Laser_Mk1.png";
         range = 200;
         damage = 5;
-      
 
     }
 
@@ -41,7 +40,8 @@ public class Green_Laser_Mk1 extends Tower {
                     Vectoid.listOfVectoids[target].x + Vectoid.radius / 2,
                     Vectoid.listOfVectoids[target].y + Vectoid.radius / 2);
 
-            // Vectoiden tager skade, denne skade varierer ud fra hvilket type Vectoid det er 
+            // Vectoiden tager skade, denne skade varierer ud fra hvilket type Vectoid det
+            // er
             if (Vectoid.listOfVectoids[target].type == "fire") {
                 Vectoid.listOfVectoids[target].takeDamage(damage * 1.5);
             } else if (Vectoid.listOfVectoids[target].type == "void") {
@@ -51,9 +51,6 @@ public class Green_Laser_Mk1 extends Tower {
 
             }
 
-
-
-            
             // Hvis Vectoiden enten dør eller kommer ud af rækkevidde vælger vi et nyt
         } else {
             pickTarget();
@@ -61,7 +58,7 @@ public class Green_Laser_Mk1 extends Tower {
 
     }
 
-    // Function der finder den først Vectoid som er inde for rækkevidden og som ikke
+    // Funktion der finder den først Vectoid som er inde for rækkevidden og som ikke
     // er død
     public void pickTarget() {
         // Her har vi en for-løkke som kører arraylisten med Vectoids igennem.
@@ -77,7 +74,7 @@ public class Green_Laser_Mk1 extends Tower {
         }
     }
 
-    //Køber et tårn hvis man har råd og det er inde for banen.
+    // Køber et tårn hvis man har råd og det er inde for banen.
     public static void buy(int x, int y) {
 
         if (x < 15 && y < 15 && x >= 0 && y >= 0 && Square.grid[x][y].isTowerPlacebel == true

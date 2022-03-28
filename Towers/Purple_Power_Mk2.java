@@ -29,17 +29,21 @@ public class Purple_Power_Mk2 extends Tower {
 
     }
 
+    // shoot funktion
     public void shoot(Graphics g) {
-
+        // Først tjekker vi om vi er i gang med at skyde
         if (shooting == true) {
+            // Nu tjekker vi om det mål vi er igang med at skyder ikke er dødt
             if (Vectoid.listOfVectoids[target].dead == false) {
                 timer++;
+                // Tegne streg mellem målet og tårn
                 g.setColor(new Color(255, 0, 220));
                 g.drawLine(centerX - 7, centerY, Vectoid.listOfVectoids[target].x + Vectoid.radius / 2,
                         Vectoid.listOfVectoids[target].y + Vectoid.radius / 2);
                 g.drawLine(centerX + 7, centerY, Vectoid.listOfVectoids[target].x + Vectoid.radius / 2,
                         Vectoid.listOfVectoids[target].y + Vectoid.radius / 2);
 
+                // Giver skade til målet
                 if (timer == 10) {
                     timer = 0;
                     if (Vectoid.listOfVectoids[target].type == "ice") {
@@ -52,26 +56,29 @@ public class Purple_Power_Mk2 extends Tower {
                     }
                     shooting = false;
                 }
+                // Gør så der skal lades igen
             } else {
                 shooting = false;
                 timer = 0;
             }
         }
-
+        // Hvis skuddet er ladet og vi ikke er i gang med at skyde vælger vi et mål
         if (timer >= attackspeed && shooting == false) {
             pickTarget();
-
+            // Hvis vi finder et mål inde for rækkevidden går vi i gang med at skyde det
             if (inRange(target) == true) {
                 shooting = true;
                 timer = 0;
             }
-
+            // Ellers lader vi
         } else if (shooting == false) {
             timer++;
         }
 
     }
 
+    // Funktion der finder den først Vectoid som er inde for rækkevidden og som ikke
+    // er død
     public void pickTarget() {
         for (int j = 0; j < Vectoid.currentNumberOfVectoids; j++) {
             if (Vectoid.listOfVectoids[j].dead == false && inRange(j) == true) {
@@ -83,6 +90,7 @@ public class Purple_Power_Mk2 extends Tower {
 
     }
 
+    // Køber et tårn hvis man har råd og det er inde for banen.
     public static void buy(int x, int y) {
 
         if (x < 15 && y < 15 && x >= 0 && y >= 0 && Square.grid[x][y].isTowerPlacebel == true
