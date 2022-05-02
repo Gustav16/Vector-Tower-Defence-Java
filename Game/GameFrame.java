@@ -182,8 +182,8 @@ public class GameFrame extends JFrame {
 
         sideMenu.add(towerMenu);
 
-        JLabel test = new JLabel("this is test", SwingConstants.CENTER);
-        sideMenu.add(test);
+       // JLabel test = new JLabel("this is test", SwingConstants.CENTER);
+        //sideMenu.add(test);
 
         screen.add(sideMenu, BorderLayout.EAST);
 

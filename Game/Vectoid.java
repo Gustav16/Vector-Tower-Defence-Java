@@ -7,13 +7,13 @@ import java.awt.Color;
 //Vectoids er dem som løber på banen
 public class Vectoid {
 
-    //Arrayliste over alle vectoids
+    // Arrayliste over alle vectoids
     public static Vectoid listOfVectoids[] = new Vectoid[30];
 
     public static int radius = 50;
     public static int maxHealth = 550;
 
-    //Forksellige typer af enemies
+    // Forksellige typer af enemies
     public static String typeList[] = { "grass", "fire", "ice", "void", "netural" };
     static int waveType = -1;
 
@@ -23,32 +23,35 @@ public class Vectoid {
     static long timer;
     static Color roundColor;
 
-    //Hvor langt de er nået
+    // Hvor langt de er nået
     float distance = 0;
 
     int currentHealth;
 
     public String type;
 
-    //Vectoids postion. Tager kordinaterne ud fra hvor de er på vectoidsRoute
+    // Vectoids postion. Tager kordinaterne ud fra hvor de er på vectoidsRoute
     public int x = Square.vectoidRoute[Math.round(distance)][0];
     public int y = Square.vectoidRoute[Math.round(distance)][1];
-
+    public int arraySpace;
     float speed = 1;
     Color bodyColor;
     public boolean dead = true;
 
-    //Varibler der hjælper med at få Vectoiden til at brænde
+    // Varibler der hjælper med at få Vectoiden til at brænde
     int burnTimeRemaining = 0;
     int burnDamage = 0;
     int burnTicks = 0;
 
+    Vectoid(int arraySpac) {
+        arraySpace = arraySpac;
 
-    //Tegner Vectoiden
+    }
+
+    // Tegner Vectoiden
     public void draw(Graphics g) {
 
-
-        //Giver skade til Vectoiden og opdaterer hvor lang tid de skal brænde endnu
+        // Giver skade til Vectoiden og opdaterer hvor lang tid de skal brænde endnu
         if (burnTimeRemaining != 0) {
 
             burnTicks++;
@@ -59,7 +62,7 @@ public class Vectoid {
             }
         }
 
-        //Healthbar
+        // Healthbar
         if (maxHealth != currentHealth) {
 
             g.setColor(Color.green);
@@ -72,7 +75,7 @@ public class Vectoid {
         x = Square.vectoidRoute[Math.round(distance)][0];
         y = Square.vectoidRoute[Math.round(distance)][1];
 
-        //Tegner Vectoiden
+        // Tegner Vectoiden
         int[] pentagonX = { 10 + 2 + x, 4 + 2 + x, 20 + 2 + x, 36 + 2 + x, 30 + 2 + x };
         int[] pentagonY = { 40 + y, 21 + y, 9 + y, 21 + y, 40 + y };
         g.setColor(bodyColor);
@@ -83,13 +86,13 @@ public class Vectoid {
 
     }
 
-    //rykker Vectoiden
+    // rykker Vectoiden
     public void move() {
         distance += speed;
         outOfMap();
     }
 
-    //Tjekker om Vectoide er ud fra kortet og gør at man mister liv hvis den er.
+    // Tjekker om Vectoide er ud fra kortet og gør at man mister liv hvis den er.
     private void outOfMap() {
         if (distance >= Square.vectoidRoute.length) {
 
@@ -101,13 +104,12 @@ public class Vectoid {
         }
     }
 
-    //Funktion towers kalder når en Vectoid skal tage skade
+    // Funktion towers kalder når en Vectoid skal tage skade
     public void takeDamage(double d) {
         currentHealth -= d;
 
-
-        //Tjekker om Vectoiden er død
-        if (currentHealth <= 0 && dead == false) {
+        // Tjekker om Vectoiden er død
+        if (currentHealth <= 0 && dead == false && dead == false) {
             dead = true;
             GamePanel.money += 10;
             countDead++;
@@ -123,14 +125,30 @@ public class Vectoid {
         }
     }
 
-    //Funktion der bliver kaldt når Vectoiden skal brænde
+    // Funktion der bliver kaldt når Vectoiden skal brænde
     public void burn(int seconds, double d) {
         burnTimeRemaining = seconds;
         burnDamage = (int) d;
 
     }
 
-    //Tegner alle Vectoids der ikke er døde og rykker dem
+    public void overturn() {
+        if (arraySpace != 0) {
+            if (listOfVectoids[arraySpace].distance > listOfVectoids[arraySpace - 1].distance) {
+
+                // Collections.swap(typeList, arraySpace, arraySpace-1);
+                listOfVectoids[arraySpace - 1].arraySpace++;
+                arraySpace--;
+
+                overturn();
+
+            }
+
+        }
+
+    }
+
+    // Tegner alle Vectoids der ikke er døde og rykker dem
     public static void drawVectoids(Graphics g) {
 
         if (GamePanel.roundStart == true) {
@@ -144,14 +162,14 @@ public class Vectoid {
 
     }
 
-    //Fylder  listOfVectoids op med Vectoids
+    // Fylder listOfVectoids op med Vectoids
     public static void makeVectoids() {
         for (int i = 0; i < maxNumberOfVectoids; i++) {
-            listOfVectoids[i] = new Vectoid();
+            listOfVectoids[i] = new Vectoid(i);
         }
     }
 
-    //Spawner en Vectoids hvert 450000000 nano sekund
+    // Spawner en Vectoids hvert 450000000 nano sekund
     public static void spawnVectoids() {
         if ((currentNumberOfVectoids < maxNumberOfVectoids) && (System.nanoTime() - timer) > 450000000
                 && GamePanel.roundStart == true) {
@@ -167,24 +185,23 @@ public class Vectoid {
 
     }
 
-    //Når man klikker på kanppen ny runde bliver denne her funktion kaldt
+    // Når man klikker på kanppen ny runde bliver denne her funktion kaldt
     public static void newRound() {
 
-        //Funktion går kun i gang hvis runden ikke allerede er startet
+        // Funktion går kun i gang hvis runden ikke allerede er startet
         if (GamePanel.roundStart == false) {
             GamePanel.roundStart = true;
             maxHealth = (int) (550 * (Math.pow(1.2, GamePanel.round)));
 
-
-            //Vectoid information
+            // Vectoid information
             VectorTD.frame.currentVectoidHp.setText("Hitpoints: " + maxHealth);
-            VectorTD.frame.nextVectoidHp.setText("Hitpoints: " + maxHealth * 1.2);
+            VectorTD.frame.nextVectoidHp.setText("Hitpoints: " + Math.round(maxHealth * 1.2) );
 
             currentNumberOfVectoids = 0;
             countDead = 0;
             GamePanel.round++;
 
-            //Opdatere hvilket type Vectoids det er nu
+            // Opdatere hvilket type Vectoids det er nu
             if (waveType == 4) {
                 GamePanel.interest++;
                 VectorTD.frame.interestLabel.setText("Interest: " + GamePanel.interest + "%");
@@ -193,10 +210,9 @@ public class Vectoid {
                 waveType++;
             }
 
-
-            //Sætter Vectoidens egenskaber ud fra hvilken type det er 
+            // Sætter Vectoidens egenskaber ud fra hvilken type det er
             if (typeList[waveType] == "grass") {
-               
+
                 roundColor = new Color(0, 239, 31);
 
                 VectorTD.frame.currentWeakness.setText("Weak agianst: fire");
@@ -242,11 +258,10 @@ public class Vectoid {
                 VectorTD.frame.nextStrength.setText("Strong agianst: void");
             }
 
-
-            //Opdatere runden
+            // Opdatere runden
             VectorTD.frame.roundLabel.setText("Round: " + GamePanel.round);
-            
-            //Gør at man får flere penge hver runde 
+
+            // Gør at man får flere penge hver runde
             GamePanel.money = GamePanel.money + GamePanel.money * GamePanel.interest / 100;
             VectorTD.frame.moneyLabel.setText("Money: " + GamePanel.money + "$");
 
